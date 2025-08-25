@@ -5,12 +5,12 @@ Repositório para back-end de e-commerce.
 
 Executar os seguintes comandos:
 
-'''
+```
 npm install
-'''
+```
 
-'''
+```
 npm run start
-'''
+```
 
-O servidor irá inciar na porta 3000
+O servidor irá inciar na porta 3000.
