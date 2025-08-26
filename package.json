@@ -15,9 +15,10 @@
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.0",
+    "@types/nodemon": "^1.19.6",
     "@types/uuid": "^10.0.0",
     "@types/yup": "^0.29.14",
-    "@types/nodemon": "^1.19.6",
+    "@types/sqlite3": "^3.1.11",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.4",
     "typescript": "^5.7.2"
@@ -29,6 +30,7 @@
     "express": "^4.21.1",
     "mysql2": "^3.11.5",
     "nodemon": "^3.1.10",
+    "sqlite3": "^5.1.7",
     "uuid": "^11.0.3",
     "yup": "^1.4.0"
   }

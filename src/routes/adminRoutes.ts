@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { Request, Response } from "express";
+import ProductController from "../Controller/ProductController";
 
 const adminRouter = Router();
+const productController = new ProductController();
 
-adminRouter.get('/admin/produto', () => {
-    return "aaaa"
-});
+
+adminRouter.get('/produto', productController.getProducts);
 
 export default adminRouter;
