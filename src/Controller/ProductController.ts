@@ -12,8 +12,6 @@ class ProductController{
             res.json(err.message).status(204);
         }
     }
-
-
 }
 
 export default ProductController;

@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import adminRouter from "./src/routes/adminRoutes";
 
 const server = express();
-//dotenv.config();
+dotenv.config();
 
-//const port = process.env.PORT;
+const port = process.env.PORT;
 
 server.use(express.urlencoded({extended: true}));
 server.use(express.json());
