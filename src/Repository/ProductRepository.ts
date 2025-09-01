@@ -1,10 +1,35 @@
-
-
+import { Product } from "../Model/Product";
 
 class ProductRepository{
 
-    getProducts(){
+    private db: Product[] = require("../Database/productDB.json");
 
+    getProducts(): Product[]{
+        return this.db;
+    }   
+
+    getProductById(id: string): Product{
+        const foundProduct: Product | undefined = this.db.find((item: Product) => {
+            return item.id == id;
+        });
+
+        if(!foundProduct){
+            throw new Error(`Produto ${id} não encontrado!`);
+        }
+
+        return foundProduct;
+    }
+
+    addProduct(product: Product): string{
+        this.db.push(product);
+        const url = require("url");
+        return url.parse(`http://localhost:3000/produto/${product.id}`);
+    }
+
+    deleteProduct(id: string){
+        const foundProduct = this.getProductById(id);
+        this.db.splice(this.db.indexOf(foundProduct));
+        return `Producto ${id} deletado com sucesso`;
     }
 
 }

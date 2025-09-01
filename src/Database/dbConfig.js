@@ -1,13 +1,9 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./ecommerce_db.db');
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
 
-// Documentação SQLite + NodeJS -> https://nodejs.org/api/sqlite.html
-
-db.serialize(() => {
-    db.run(`
-        -- SQL query
-        )
-    `);
-});
-
-module.exports = db;
+export async function openDB (){
+    return open({
+        filename: "./Database/ecommerceDB.db",
+        driver: sqlite3.Database
+    });
+}

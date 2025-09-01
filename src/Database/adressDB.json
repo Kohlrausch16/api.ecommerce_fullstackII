@@ -1,0 +1,22 @@
+[
+    {
+      "id": "e3f94f34-0a33-45ff-92f1-b3a8d0bb25a9",
+      "rua": "Rua das Flores",
+      "numero": "120",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "createdAt": "2024-02-20T14:00:00.000Z",
+      "updatedAt": "2024-06-01T16:00:00.000Z"
+    },
+    {
+      "id": "d13c7c2f-2f61-4c0f-9f7d-2a5bfa1463de",
+      "rua": "Av. Atlântica",
+      "numero": "500",
+      "bairro": "Copacabana",
+      "cidade": "Rio de Janeiro",
+      "uf": "RJ",
+      "createdAt": "2024-03-01T12:00:00.000Z",
+      "updatedAt": "2024-07-20T17:00:00.000Z"
+    }
+]
