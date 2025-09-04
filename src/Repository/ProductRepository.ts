@@ -26,13 +26,6 @@ class ProductRepository{
         return url.parse(`http://localhost:3000/produto/${product.id}`);
     }
 
-    updateProduct(id: string, product: Product): string{
-        this.deleteProduct(id);
-        this.db.push(product);
-        const url = require("url");
-        return url.parse(`http://localhost:3000/produto/${product.id}`);;
-    }
-
     deleteProduct(id: string){
         const foundProduct = this.getProductById(id);
         this.db.splice(this.db.indexOf(foundProduct));

@@ -6,8 +6,6 @@ const productService = new ProductService;
 
 class ProductController{
 
-    
-
     getProducts(req: Request, res: Response){
         try{
             res.json(productService.getProducts()).status(200);
@@ -26,24 +24,8 @@ class ProductController{
 
     addProduct(req: Request, res: Response){
         try{
-            res.json(productService.addProduct(req.body as Product)).status(201);
+            res.json(productService.addProduct(req.body as Product));
         } catch (err: any){
-            res.json(err.message).status(400);
-        }
-    }
-
-    updateProduct(req: Request, res: Response){
-        try{
-            res.json(productService.updateProduct(req.params.id as string, req.body as Product)).status(200);
-        } catch(err: any){
-            res.json(err.message).status(400);
-        }
-    }
-
-    patchProduct(req: Request, res: Response){
-        try{
-            res.json(productService.patchProduct(req.params.id as string)).status(200);
-        } catch(err: any){
             res.json(err.message).status(400);
         }
     }
