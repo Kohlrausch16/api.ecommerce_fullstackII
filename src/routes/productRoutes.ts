@@ -8,7 +8,7 @@ adminRouter.get('/produto', productController.getProducts);
 adminRouter.get('/produto/:id', productController.getProductById);
 adminRouter.post('produto', productController.addProduct);
 adminRouter.put('/produto/:id', productController.updateProduct);
-adminRouter.patch('/produto/:id', productController.patchStatus)
+adminRouter.patch('/produto/:id', productController.patchProductStatus)
 adminRouter.delete('product/:id', productController.deleteProduct);
 
 export default adminRouter;
