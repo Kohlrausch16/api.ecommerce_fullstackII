@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import adminRouter from "./src/routes/adminRoutes";
+import adminRouter from "./src/routes/productRoutes";
 
 const server = express();
 dotenv.config();

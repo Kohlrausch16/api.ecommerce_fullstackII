@@ -6,7 +6,9 @@ const productController = new ProductController();
 
 adminRouter.get('/produto', productController.getProducts);
 adminRouter.get('/produto/:id', productController.getProductById);
-adminRouter.post('produto', productController.addProduct)
+adminRouter.post('produto', productController.addProduct);
+adminRouter.put('/produto/:id', productController.updateProduct);
+adminRouter.patch('/produto/:id', productController.patchStatus)
 adminRouter.delete('product/:id', productController.deleteProduct);
 
 export default adminRouter;
