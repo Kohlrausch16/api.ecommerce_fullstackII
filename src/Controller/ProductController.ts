@@ -6,8 +6,6 @@ const productService = new ProductService;
 
 class ProductController{
 
-    
-
     getProducts(req: Request, res: Response){
         try{
             res.json(productService.getProducts()).status(200);

@@ -33,6 +33,7 @@ class ProductService{
     patchProductStatus(id: string){
         const product = this.productRepository.getProductById(id);
         (product.status) ? product.status = false : product.status = true;
+        return this.productRepository.updateProduct(id, product);
     }
 
     deleteProduct(id: string){

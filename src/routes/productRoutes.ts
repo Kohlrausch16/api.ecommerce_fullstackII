@@ -1,14 +1,14 @@
 import { Router } from "express";
 import ProductController from "../Controller/ProductController";
 
-const adminRouter = Router();
+const productRouter = Router();
 const productController = new ProductController();
 
-adminRouter.get('/produto', productController.getProducts);
-adminRouter.get('/produto/:id', productController.getProductById);
-adminRouter.post('produto', productController.addProduct);
-adminRouter.put('/produto/:id', productController.updateProduct);
-adminRouter.patch('/produto/:id', productController.patchProductStatus)
-adminRouter.delete('product/:id', productController.deleteProduct);
+productRouter.get('/produto', productController.getProducts);
+productRouter.get('/produto/:id', productController.getProductById);
+productRouter.post('produto', productController.addProduct);
+productRouter.put('/produto/:id', productController.updateProduct);
+productRouter.patch('/produto/:id', productController.patchProductStatus)
+productRouter.delete('product/:id', productController.deleteProduct);
 
-export default adminRouter;
+export default productRouter;

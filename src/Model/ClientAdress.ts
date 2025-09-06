@@ -1,6 +1,6 @@
 import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
 
-export type Adress = {
+export type ClientAdress = {
     id: UUIDTypes;
     rua: string;
     numero: string;

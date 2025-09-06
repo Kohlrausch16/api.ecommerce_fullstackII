@@ -30,7 +30,11 @@ class ProductRepository{
         this.deleteProduct(id);
         this.db.push(product);
         const url = require("url");
-        return url.parse(`http://localhost:3000/produto/${product.id}`);;
+        return url.parse(`http://localhost:3000/produto/${product.id}`);
+    }
+
+    patchProduct(id: string){
+        return `Integração para rota PATCH ainda não realizada com o banco de dados!`;
     }
 
     deleteProduct(id: string){
