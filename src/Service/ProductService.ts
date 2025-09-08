@@ -8,15 +8,15 @@ class ProductService{
     private productRepository = new ProductRepository;
     private serviceUpdateRecordHelper = new ServiceUpdateHelper;
 
-    getProducts(): Product[]{
-        return this.productRepository.getProducts();
+    async getProducts(): Promise<Product[]>{
+        return await this.productRepository.getProducts();
     }
 
-    getProductById(id: string): Product{
-        return this.productRepository.getProductById(id);
+    async getProductById(id: string): Promise<Product>{
+        return await this.productRepository.getProductById(id);
     }
 
-    addProduct(product: Product): string{
+  /*  addProduct(product: Product): string{
         product.id = uuidv4();
         product.createdAt = new Date();
         product.updatedAt = new Date();
@@ -38,7 +38,7 @@ class ProductService{
 
     deleteProduct(id: string){
         return this.productRepository.deleteProduct(id);
-    }
+    }*/
 }
 
 export default ProductService;

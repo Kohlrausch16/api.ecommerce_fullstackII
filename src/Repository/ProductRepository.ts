@@ -2,24 +2,23 @@ import { Product } from "../Model/Product";
 
 class ProductRepository{
 
-    private db: Product[] = require("../Database/productDB.json");
+    private db = require('../Database/ecommerceDB.db');
 
-    getProducts(): Product[]{
-        return this.db;
-    }   
+    async getProducts(): Promise<Product[]> {
+        const result = await this.db.all("SELECT * FROM product");
+        return result;
+    }  
 
-    getProductById(id: string): Product{
-        const foundProduct: Product | undefined = this.db.find((item: Product) => {
-            return item.id == id;
-        });
+    async getProductById(id: string): Promise<Product>{
+        const foundProduct: Product | undefined = await this.db.all(`SELECT * FROM product WHERE id=?`, [id]);
 
-        if(!foundProduct){
+        if(!foundProduct){;
             throw new Error(`Produto ${id} não encontrado!`);
         }
 
         return foundProduct;
     }
-
+/*
     addProduct(product: Product): string{
         this.db.push(product);
         const url = require("url");
@@ -42,7 +41,7 @@ class ProductRepository{
         this.db.splice(this.db.indexOf(foundProduct));
         return `Producto ${id} deletado com sucesso`;
     }
-
+*/
 }
 
 export default ProductRepository;
