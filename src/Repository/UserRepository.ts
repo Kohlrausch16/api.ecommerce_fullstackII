@@ -22,7 +22,7 @@ class UserRepository {
     }
 
     /*
-    async addUser(user: User): Promise<string> {
+    async addUser(user: User): Promise<User> {
         await this.db.run(
             `INSERT INTO user (id, userName, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)`,
             [user.id, user.userName, user.password, JSON.stringify(user.permissionList), user.createdAt, user.updatedAt]
@@ -30,7 +30,7 @@ class UserRepository {
         return `http://localhost:3000/user/${user.id}`;
     }
 
-    async deleteUser(id: string): Promise<string> {
+    async deleteUser(id: string): Promise<User> {
         await this.db.run(`DELETE FROM user WHERE id=?`, [id]);
         return `Usuário ${id} deletado com sucesso`;
     }
@@ -38,3 +38,4 @@ class UserRepository {
 }
 
 export default UserRepository;
+
