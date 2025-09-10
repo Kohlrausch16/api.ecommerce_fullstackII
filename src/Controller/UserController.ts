@@ -2,45 +2,42 @@ import { Request, Response } from "express";
 import UserService from "../Service/UserService";
 import { User } from "../Model/User";
 
-const userService = new UserService();
+const userService = new UserService;
 
 class UserController {
     async getUsers(req: Request, res: Response) {
         try {
-            const users = await userService.getUsers();
-            res.status(200).json(users);
+            res.json(await userService.getUsers()).status(200);
         } catch (err: any) {
-            res.status(500).json({ error: err.message });
+            res.json(err.message).status(204);
         }
     }
 
     async getUserById(req: Request, res: Response) {
         try {
-            const user = await userService.getUserById(req.params.id);
-            res.status(200).json(user);
+            res.json(await userService.getUserById(req.params.id));
         } catch (err: any) {
-            res.status(404).json({ error: err.message });
-        }
-    }
-/*
-    async addUser(req: Request, res: Response) {
-        try {
-            const newUser: User = req.body;
-            const url = await userService.addUser(newUser);
-            res.status(201).json({ message: "Usuário criado com sucesso!", url });
-        } catch (err: any) {
-            res.status(500).json({ error: err.message });
+            res.json(err.message).status(404);
         }
     }
 
-    async deleteUser(req: Request, res: Response) {
+    /*
+    addUser(req: Request, res: Response) {
         try {
-            const result = await userService.deleteUser(req.params.id);
-            res.status(200).json({ message: result });
+            res.json(userService.addUser(req.body as User)).status(201);
         } catch (err: any) {
-            res.status(500).json({ error: err.message });
+            res.json(err.message).status(400);
         }
     }
-}/*
+
+    deleteUser(req: Request, res: Response) {
+        try {
+            res.json(userService.deleteUser(req.params.id)).status(200);
+        } catch (err: any) {
+            res.json(err.message).status(404);
+        }
+    }
+    */
+}
 
 export default UserController;
