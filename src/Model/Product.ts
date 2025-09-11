@@ -9,7 +9,7 @@ export type Product = {
     length: number;
     color: string[];
     description: string;
-    status: boolean;
+    status: boolean | number;
     createdAt: Date;
     updatedAt: Date;
     userId: UUIDTypes;
