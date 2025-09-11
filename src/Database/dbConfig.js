@@ -90,4 +90,17 @@ db.serialize(() => {
     `);
 });
 
-module.exports = db;
+function exec(query, params = []) {
+    return new Promise((resolve, reject) => {
+        db.all(query, params, (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
+module.exports = {
+    exec
+};

@@ -16,29 +16,29 @@ class ProductService{
         return await this.productRepository.getProductById(id);
     }
 
-  /*  addProduct(product: Product): string{
+    async addProduct(product: Product): Promise<string>{
         product.id = uuidv4();
         product.createdAt = new Date();
         product.updatedAt = new Date();
-        return this.productRepository.addProduct(product);
+        return await this.productRepository.addProduct(product);
     }
 
-    updateProduct(id: string, product: Product): string{
+    async updateProduct(id: string, product: Product): Promise<string>{
         product.updatedAt = new Date;
-        const foundProduct = this.productRepository.getProductById(id);
-        product = this.serviceUpdateRecordHelper.updateProduct(product, foundProduct);      
-        return this.productRepository.updateProduct(id, product);
+        const foundProduct = await this.productRepository.getProductById(id);
+        product = await this.serviceUpdateRecordHelper.updateProduct(product, foundProduct);      
+        return await this.productRepository.updateProduct(id, product);
     }
 
-    patchProductStatus(id: string){
-        const product = this.productRepository.getProductById(id);
+    async patchProductStatus(id: string): Promise<string>{
+        const product = await this.productRepository.getProductById(id);
         (product.status) ? product.status = false : product.status = true;
-        return this.productRepository.updateProduct(id, product);
+        return await this.productRepository.updateProduct(id, product);
     }
 
-    deleteProduct(id: string){
-        return this.productRepository.deleteProduct(id);
-    }*/
+    async deleteProduct(id: string){
+        return await this.productRepository.deleteProduct(id);
+    }
 }
 
 export default ProductService;

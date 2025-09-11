@@ -21,38 +21,38 @@ class ProductController{
             res.json(err.message).status(404);
         }
     }
-/*
-    addProduct(req: Request, res: Response){
+
+    async addProduct(req: Request, res: Response){
         try{
-            res.json(productService.addProduct(req.body as Product)).status(201);
+            res.json(await productService.addProduct(req.body as Product)).status(201);
         } catch (err: any){
             res.json(err.message).status(400);
         }
     }
 
-    updateProduct(req: Request, res: Response){
+    async updateProduct(req: Request, res: Response){
         try{
-            res.json(productService.updateProduct(req.params.id as string, req.body as Product)).status(200);
+            res.json(await productService.updateProduct(req.params.id as string, req.body as Product)).status(200);
         } catch(err: any){
             res.json(err.message).status(400);
         }
     }
 
-    patchProductStatus(req: Request, res: Response){
+    async patchProductStatus(req: Request, res: Response){
         try{
-            res.json(productService.patchProductStatus(req.params.id as string)).status(200);
+            res.json(await productService.patchProductStatus(req.params.id as string)).status(200);
         } catch(err: any){
             res.json(err.message).status(400);
         }
     }
 
-    deleteProduct(req: Request, res: Response){
+    async deleteProduct(req: Request, res: Response){
         try{
-            res.json(productService.deleteProduct(req.params.id)).status(200);
+            res.json(await productService.deleteProduct(req.params.id)).status(200);
         } catch (err: any){
             res.json(err.message).status(404);
         }
-    }*/
+    }
 }
 
 export default ProductController;

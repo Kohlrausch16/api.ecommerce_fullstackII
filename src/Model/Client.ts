@@ -10,9 +10,9 @@ export type Client = {
     phoneNumber: string;
     email: string;
     activeStatus: boolean;
-    adressId: UUIDTypes[] | ClientAdress[]; 
-    cartId: UUIDTypes[] | Cart[];
-    userId: UUIDTypes[];
+    adressId: UUIDTypes[] | ClientAdress[] | undefined; 
+    cartId: UUIDTypes[] | Cart[] | undefined;
+    userId: UUIDTypes[] | undefined;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -6,7 +6,7 @@ export type CartItem = {
     productQtd: number;
     totalAmount: number;
     activetatus: boolean;
-    productId: UUIDTypes[] | Product[];
+    productId: UUIDTypes | Product;
     createdAt: Date;
     updatedAt: Date;
 }
