@@ -22,16 +22,14 @@ class ProductService{
 
     async addProduct(product: Product): Promise<string>{
         product.id = uuidv4();
-        product.createdAt = new Date();
-        product.updatedAt = new Date();
+        product.createdAt = new Date;
+        product.updatedAt = new Date;
         product.color = this.serviceHelper.toString(product.color as string[]);
         return await this.productRepository.addProduct(product);
     }
 
     async updateProduct(id: string, product: Product): Promise<string>{
-        product.updatedAt = new Date;
-        const foundProduct = await this.productRepository.getProductById(id);
-        product = await this.serviceHelper.updateProduct(product, foundProduct);      
+        product.updatedAt = new Date;  
         return await this.productRepository.updateProduct(id, product);
     }
 

@@ -10,12 +10,6 @@ class ServiceUpdateHelper{
     toArray(colors: string): string[]{
         return colors.split(',')
     }
-
-    updateProduct(product: Product, foundProduct: Product){
-        product.id = foundProduct.id;
-        return product;
-    }
-
 }
 
 export default ServiceUpdateHelper;

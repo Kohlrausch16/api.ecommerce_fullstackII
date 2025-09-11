@@ -46,7 +46,7 @@ class ProductController{
         }
         
     }
-
+    
     async deleteProduct(req: Request, res: Response){
         try{
             res.json(await productService.deleteProduct(req.params.id)).status(200);

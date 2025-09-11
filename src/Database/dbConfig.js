@@ -34,8 +34,9 @@ db.serialize(() => {
             height REAL,
             width REAL,
             length REAL,
-            color TEXT, -- JSON string
+            color TEXT,
             description TEXT,
+            year TEXT,
             status INTEGER DEFAULT 1,
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL,
