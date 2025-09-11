@@ -7,7 +7,7 @@ export type Product = {
     height: number;
     width: number;
     length: number;
-    color: string[];
+    color: string[] | string;
     description: string;
     status: boolean | number;
     createdAt: Date;

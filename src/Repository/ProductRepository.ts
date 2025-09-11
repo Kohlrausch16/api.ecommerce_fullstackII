@@ -18,7 +18,7 @@ class ProductRepository{
     }
 
     async addProduct(product: Product): Promise<string>{
-        await this.db.exec('INSERT INTO product (id, name, price, height, width, length, color, description, status, createdAt, updatedAt, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)', [product.id, product.name, product.price, product.height, product.length, product.color, product.description, product.status, product.createdAt, product.updatedAt, product.userId]);
+        await this.db.exec('INSERT INTO product (id, name, price, height, width, length, color, description, status, createdAt, updatedAt, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [product.id, product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.status, product.createdAt, product.updatedAt, product.userId]);
 
         return repositoryURLBuilderHelper(product.id);
     }
@@ -41,8 +41,8 @@ class ProductRepository{
 
     async deleteProduct(id: string): Promise<string>{
         const foundProduct = this.getProductById(id);
-        this.db.splice(this.db.indexOf(foundProduct));
-        return `Producto ${id} deletado com sucesso`;
+        await this.db.exec('DELETE FROM product WHERE id = ?', [id]);
+        return `Produto ${id} deletado com sucesso!`; 
     }
 }
 

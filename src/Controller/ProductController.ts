@@ -21,7 +21,7 @@ class ProductController{
             res.json(err.message).status(404);
         }
     }
-
+    
     async addProduct(req: Request, res: Response){
         try{
             res.json(await productService.addProduct(req.body as Product)).status(201);
@@ -44,6 +44,7 @@ class ProductController{
         } catch(err: any){
             res.json(err.message).status(400);
         }
+        
     }
 
     async deleteProduct(req: Request, res: Response){
