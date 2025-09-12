@@ -14,7 +14,7 @@ class ProductRepository{
 
         if(foundProduct.length < 1) throw new Error(`Produto ${id} não encontrado!`);
 
-        return foundProduct;
+        return foundProduct[0];
     }
 
     async addProduct(product: Product): Promise<string>{
@@ -26,18 +26,19 @@ class ProductRepository{
     async updateProduct(id: string, product: Product): Promise<string>{
         await this.getProductById(id);
 
-        await this.db.exec('UPDATE product SET name = ?, price = ?, height = ?, width =?, length = ?, color = ?, description = ?, year = ?, status = ?, createdAt = ?, updatedAt = ?, userId = ? WHERE id = ?', [product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.createdAt, product.updatedAt, product.userId, product.id]); 
+        await this.db.exec('UPDATE product SET name = ?, price = ?, height = ?, width =?, length = ?, color = ?, description = ?, year = ?, status = ?, updatedAt = ?, userId = ? WHERE id = ?', [product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.updatedAt, product.userId, id]); 
 
         return repositoryURLBuilderHelper(id);
     }
 
     async patchProduct(id: string): Promise<string>{
-        const foundProduct = await this.getProductById(id);
-        foundProduct.status === 1 ? foundProduct.status = 0 : foundProduct.status = 1;
+        const product: Product = await this.getProductById(id);
+        (product.status == 1) ? product.status = false : product.status = true;
+        product.updatedAt = new Date;
 
-        await this.db.exec('UPDATE product SET status = ?, updatedAt = ? WHERE id = ?', [foundProduct.status, foundProduct.updatedAt, foundProduct.id]);
+        await this.db.exec('UPDATE product SET status = ?, updatedAt = ? WHERE id = ?', [product.status, product.updatedAt, product.id]);
 
-        return repositoryURLBuilderHelper(foundProduct.id);
+        return repositoryURLBuilderHelper(product.id);
     }
 
     async deleteProduct(id: string): Promise<string>{

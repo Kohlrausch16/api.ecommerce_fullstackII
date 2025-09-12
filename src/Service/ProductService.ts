@@ -29,14 +29,13 @@ class ProductService{
     }
 
     async updateProduct(id: string, product: Product): Promise<string>{
-        product.updatedAt = new Date;  
+        product.updatedAt = new Date;
+        product.color = this.serviceHelper.toString(product.color as string[]);
         return await this.productRepository.updateProduct(id, product);
     }
 
     async patchProductStatus(id: string): Promise<string>{
-        const product = await this.productRepository.getProductById(id);
-        (product.status) ? product.status = false : product.status = true;
-        return await this.productRepository.updateProduct(id, product);
+        return await this.productRepository.patchProduct(id);
     }
 
     async deleteProduct(id: string){
