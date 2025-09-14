@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ProductService from "../Service/ProductService";
 import { Product } from "../Model/Product";
+import { validateProduct } from "./Schema/ProductSchema";
 
 const productService = new ProductService;
 
@@ -24,6 +25,7 @@ class ProductController{
     
     async addProduct(req: Request, res: Response){
         try{
+            await validateProduct.validate(req.body, {stripUnknown : true});
             res.json(await productService.addProduct(req.body as Product)).status(201);
         } catch (err: any){
             res.json(err.message).status(400);
