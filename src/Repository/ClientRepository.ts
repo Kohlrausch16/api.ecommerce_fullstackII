@@ -3,7 +3,7 @@ import { Client } from "../Model/Client";
 
 class ClientRepository{
 
-    private db: Client[] = require('../Database/testDB.json');
+    private db = require('../Database/dbConfig');
 
     async getClients(): Promise<Client[]>{
         return this.db;

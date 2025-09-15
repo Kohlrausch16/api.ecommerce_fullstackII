@@ -6,8 +6,9 @@ db.serialize(() => {
         CREATE TABLE IF NOT EXISTS user (
             id VARCHAR(255) PRIMARY KEY,
             userName TEXT NOT NULL,
+            email TEXT NOT NULL,
             password TEXT NOT NULL,
-            permissionList TEXT, -- JSON string
+            permissionList TEXT,
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL
         )
@@ -78,6 +79,7 @@ db.serialize(() => {
             cpf TEXT,
             phoneNumber TEXT,
             email TEXT,
+            password TEXT,
             activeStatus INTEGER DEFAULT 1,
             adressId VARCHAR(255),
             cartId VARCHAR(255),

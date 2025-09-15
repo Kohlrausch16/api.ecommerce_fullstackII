@@ -9,6 +9,7 @@ export type Client = {
     cpf: string;
     phoneNumber: string;
     email: string;
+    password: string;
     activeStatus: boolean;
     adressId: UUIDTypes[] | ClientAdress[] | undefined; 
     cartId: UUIDTypes[] | Cart[] | undefined;

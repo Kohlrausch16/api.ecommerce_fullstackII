@@ -3,3 +3,8 @@ export type AuthJWT = {
     payload: string;
     secret: string;
 }
+
+export type AuthCredentials = {
+    email: string;
+    password: string;
+}
