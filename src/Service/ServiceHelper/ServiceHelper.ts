@@ -1,5 +1,5 @@
 import { Product } from "../../Entities/Product";
-
+import bcrypt from 'bcrypt';
 
 class ServiceUpdateHelper{
 
@@ -9,6 +9,10 @@ class ServiceUpdateHelper{
 
     toArray(colors: string): string[]{
         return colors.split(',')
+    }
+
+    hashPassword(password: string): Promise<string>{
+        return bcrypt.hash(password, 10);
     }
 }
 

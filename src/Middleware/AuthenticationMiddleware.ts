@@ -9,9 +9,8 @@ export const authenticationMiddleware = async (req: Request, res: Response) => {
     try{
         const { token, refresh_token } = req.headers;
 
-        if(!token || !refresh_token) throw new Error('Token or refresh token not informed');
+        if(!token || !refresh_token) throw new Error('Token or refresh token not informed - AuthMiddleware');
         
-        res.json(await authenticationService.token(token as string));
         //const updatedRefreshToken = await authenticationService.refreshToken(token as string);
         
         //res.set('token', updatedToken);

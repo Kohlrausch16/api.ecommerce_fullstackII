@@ -9,14 +9,18 @@ const authService = new AuthenticationService;
 class AuthenticationController{
 
     async validateCredentials(req: Request, res: Response){
+    
         try{
+
+            const db = require('../Database/dbConfig')
+
             const {email, password} = req.body;
 
             if(!email || !password) 
-                throw new Error('Email or password incorrect/not informed!');
+                throw new Error('Email or password incorrect/not informed! - AuthController');
 
             await validateCredentials.validate({email, password}, {stripUnknown: true});
-            await authService.getCredentials({email, password} as AuthCredentials)
+            await authService.checkCredentials({email, password} as AuthCredentials);
             
 
         } catch(err: any) {
