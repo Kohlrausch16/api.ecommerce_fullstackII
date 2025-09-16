@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import AuthenticationService from "../Service/AuthenticationService";
-import { AuthJWT } from "../Model/Authentication";
+import { AuthJWT } from "../Entities/Authentication";
 
 export const authenticationMiddleware = async (req: Request, res: Response) => {
 

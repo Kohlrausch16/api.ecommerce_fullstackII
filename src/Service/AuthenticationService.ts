@@ -1,3 +1,5 @@
+import { AuthCredentials } from "../Entities/Authentication";
+import { User } from "../Entities/User";
 import AuthenticationRepository from "../Repository/AuthenticationRepository";
 import AuthHelper from "./ServiceHelper/AuthHelper";
 import dotenv from 'dotenv';
@@ -14,8 +16,12 @@ class AuthenticationService{
     private jwtExpiration = process.env.TOKEN_EXPIRES_IN;
 
 
-    async getAcess(){
-        
+    async getCredentials(credentials: AuthCredentials){
+        const foundUserAccess = await this.authRepository.getByEmail(credentials.email, 'user');
+        const foundClientAccess = await this.authRepository.getByEmail(credentials.email, 'client');
+
+        console.log(foundClientAccess, foundUserAccess);
+    
     }
 
     async token(token: string){

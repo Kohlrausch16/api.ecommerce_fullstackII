@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import ProductService from "../Service/ProductService";
-import { Product } from "../Model/Product";
+import { Product } from "../Entities/Product";
 import { validateProduct } from "./Schema/ProductSchema";
 
 const productService = new ProductService;

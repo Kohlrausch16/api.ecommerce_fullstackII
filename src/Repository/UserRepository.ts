@@ -1,41 +1,18 @@
-import { User } from "../Model/User";
+import { User } from "../Entities/User";
 
-class UserRepository {
-    private db = require('../Database/ecommerceDB.db');
+class UserRepository{
 
-    async getUsers(): Promise<User[]> {
-        const result = await this.db.all("SELECT * FROM user");
-        return result;
+    private db = require('../Database/dbConfig');
+
+    async getUsers(): Promise<User[]>{
+        return await this.db.exec('SELECT * FROM user')
     }
 
-    async getUserById(id: string): Promise<User> {
-        const foundUser: User | undefined = await this.db.get(
-            `SELECT * FROM user WHERE id=?`,
-            [id]
-        );
-
-        if (!foundUser) {
-            throw new Error(`Usuário ${id} não encontrado!`);
-        }
-
-        return foundUser;
+    async getUserById(id: string): Promise<User>{
+        const foundUser = await this.db.exec('SELECT * FROM user WHERE id = ?', [id]);        
+        return foundUser[0];
     }
 
-    /*
-    async addUser(user: User): Promise<User> {
-        await this.db.run(
-            `INSERT INTO user (id, userName, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)`,
-            [user.id, user.userName, user.password, JSON.stringify(user.permissionList), user.createdAt, user.updatedAt]
-        );
-        return `http://localhost:3000/user/${user.id}`;
-    }
-
-    async deleteUser(id: string): Promise<User> {
-        await this.db.run(`DELETE FROM user WHERE id=?`, [id]);
-        return `Usuário ${id} deletado com sucesso`;
-    }
-    */
 }
 
 export default UserRepository;
-

@@ -1,4 +1,4 @@
-import { Product } from "../Model/Product";
+import { Product } from "../Entities/Product";
 import { repositoryURLBuilderHelper } from "./RepositoryHelper/RepositoryURLBuilderHelper";
 
 class ProductRepository{

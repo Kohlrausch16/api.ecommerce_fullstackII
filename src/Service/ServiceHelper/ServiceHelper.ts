@@ -1,4 +1,4 @@
-import { Product } from "../../Model/Product";
+import { Product } from "../../Entities/Product";
 
 
 class ServiceUpdateHelper{
