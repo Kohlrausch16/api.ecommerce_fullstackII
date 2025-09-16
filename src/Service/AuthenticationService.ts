@@ -3,7 +3,7 @@ import { User } from "../Entities/User";
 import AuthenticationRepository from "../Repository/AuthenticationRepository";
 import AuthHelper from "./ServiceHelper/AuthHelper";
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -20,15 +20,14 @@ class AuthenticationService{
         const foundUserAccess: User = await this.authRepository.getByEmail(credentials.email);
         await this.authHelper.compareCredentials(foundUserAccess as User, credentials as AuthCredentials);
 
-        const token: string = await this.generateToken(foundUserAccess);
-        const refreshToken: string = await this.generateToken(foundUserAccess);
-
-        console.log(`Token: \n ${token} \n RefreshToken: \n ${refreshToken}`);
+        const token: string = await this.generateToken(foundUserAccess, this.jwtSecret as jwt.Secret, '1h' as string);
+        const refreshToken: string = await this.generateToken(foundUserAccess, this.jwtSecret as jwt.Secret, '6h' as string);
         
+        return {token, refreshToken};
     }
 
-    async generateToken(payload: User): Promise<string>{
-       return jwt.sign(payload, 'c01ffcba-e5bf-4d7e-b6ce-81eb8d21f9ef', {expiresIn: '1h'});
+    async generateToken(payload: User, secret: jwt.Secret, expirationTime: string): Promise<string>{
+       return jwt.sign(payload, secret , {expiresIn: expirationTime} as SignOptions);
     }
 
 
