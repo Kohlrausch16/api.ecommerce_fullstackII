@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { validateCredentials } from "./Schema/AuthenticationSchema";
-import AuthenticationService from "../Service/AuthenticationService";
+import AuthenticationService from "../src/Service/AuthenticationService";
 import { AuthCredentials } from "../Entities/Authentication";
 
 

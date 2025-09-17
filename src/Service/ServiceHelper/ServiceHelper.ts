@@ -1,4 +1,4 @@
-import { Product } from "../../Entities/Product";
+import { Product } from "../../../Entities/Product";
 import bcrypt from 'bcrypt';
 
 class ServiceUpdateHelper{

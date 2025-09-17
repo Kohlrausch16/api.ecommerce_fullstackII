@@ -1,6 +1,6 @@
 import jwt, { Jwt, JwtPayload, SignOptions } from 'jsonwebtoken';
-import { User } from '../../Entities/User';
-import { AuthCredentials } from '../../Entities/Authentication';
+import { User } from '../../../Entities/User';
+import { AuthCredentials } from '../../../Entities/Authentication';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 

@@ -1,7 +1,7 @@
 import { JwtPayload } from "jsonwebtoken";
-import { AuthCredentials, AuthTokens } from "../Entities/Authentication";
-import { User } from "../Entities/User";
-import AuthenticationRepository from "../Repository/AuthenticationRepository";
+import { AuthCredentials, AuthTokens } from "../../Entities/Authentication";
+import { User } from "../../Entities/User";
+import AuthenticationRepository from "../../Repository/AuthenticationRepository";
 import AuthHelper from "./ServiceHelper/AuthHelper";
 
 class AuthenticationService{

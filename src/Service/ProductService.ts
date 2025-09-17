@@ -1,6 +1,6 @@
-import { Product } from "../Entities/Product";
+import { Product } from "../../Entities/Product";
 import { v4 as uuidv4 } from 'uuid';
-import ProductRepository from "../Repository/ProductRepository";
+import ProductRepository from "../../Repository/ProductRepository";
 import ServiceUpdateHelper from "./ServiceHelper/ServiceHelper";
 
 class ProductService{

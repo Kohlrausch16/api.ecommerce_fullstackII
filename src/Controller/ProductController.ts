@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ProductService from "../Service/ProductService";
+import ProductService from "../src/Service/ProductService";
 import { Product } from "../Entities/Product";
 import { validateProduct } from "./Schema/ProductSchema";
 
