@@ -1,4 +1,4 @@
-import { Product } from "../Model/Product";
+import { Product } from "../Entities/Product";
 import { v4 as uuidv4 } from 'uuid';
 import ProductRepository from "../Repository/ProductRepository";
 import ServiceUpdateHelper from "./ServiceHelper/ServiceHelper";
@@ -18,6 +18,14 @@ class ProductService{
 
     async getProductById(id: string): Promise<Product>{
         return await this.productRepository.getProductById(id);
+    }
+
+    async getProductByName(name: string){
+        // Implementar busca de produto por nome;
+    }
+
+    async getProductByPrice(minPrice: string, maxPrice: string){
+        // Implementar busca de produto por preço;
     }
 
     async addProduct(product: Product): Promise<string>{

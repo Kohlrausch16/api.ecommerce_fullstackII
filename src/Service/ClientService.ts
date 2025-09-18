@@ -1,4 +1,4 @@
-import { Client } from "../Model/Client";
+import { Client } from "../Entities/Client";
 import ClientRepository from "../Repository/ClientRepository";
 
 class ClientService{

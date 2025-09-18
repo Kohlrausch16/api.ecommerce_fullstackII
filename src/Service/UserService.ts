@@ -1,10 +1,18 @@
-import { User } from "../Model/User";
-import { v4 as uuidv4 } from 'uuid';
+import { User } from "../Entities/User";
 import UserRepository from "../Repository/UserRepository";
 
-const userRepository = new UserRepository;
 
 class UserService{
+
+    private userRepository = new UserRepository;
+
+    async getUsers(): Promise<User[]>{
+        return await this.userRepository.getUsers();
+    }
+
+    async getUserById(id: string): Promise<User>{
+        return await this.userRepository.getUserById(id as string);
+    }
 
 }
 

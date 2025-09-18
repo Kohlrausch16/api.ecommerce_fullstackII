@@ -1,8 +1,8 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import AuthenticationService from "../Service/AuthenticationService";
-import { AuthJWT } from "../Model/Authentication";
+import { AuthTokens } from "../Entities/Authentication";
 
-export const authenticationMiddleware = async (req: Request, res: Response) => {
+export const authenticationMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 
     const authenticationService = new AuthenticationService;
 
@@ -11,13 +11,12 @@ export const authenticationMiddleware = async (req: Request, res: Response) => {
 
         if(!token || !refresh_token) throw new Error('Token or refresh token not informed');
         
-        res.json(await authenticationService.token(token as string));
-        //const updatedRefreshToken = await authenticationService.refreshToken(token as string);
-        
-        //res.set('token', updatedToken);
-        //res.set(updatedRefreshToken);  
-        
-        //next();
+        const {updatedToken, updatedRefreshToken} = await authenticationService.validateTokens({token, refresh_token} as AuthTokens);
+
+        res.set('token', updatedToken);
+        res.set('refresh_token', updatedRefreshToken);
+
+        next();
 
     } catch (err: any){
         res.json(err.message).status(401);

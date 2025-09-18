@@ -11,8 +11,4 @@ clientRouter.put('/cliente/:id', clientController.updateClient)
 clientRouter.delete('/cliente/:id', clientController.deleteClient);
 clientRouter.patch('/cliente/:id', clientController.patchClientStatus);
 
-
-// setAdress;
-
-
 export default clientRouter;
