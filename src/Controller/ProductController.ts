@@ -9,7 +9,17 @@ class ProductController{
 
     async getProducts(req: Request, res: Response){
         try{
-            res.json(await productService.getProducts()).status(200);
+
+            const {name, minPrice, maxPrice} = req.query;
+
+            if(name){
+                res.json(await productService.getProductByName(name as string)).status(200);
+            } else if(minPrice && maxPrice){
+                res.json(await productService.getProductByPrice(minPrice as string, maxPrice as string)).status(200)
+            } else {
+                res.json(await productService.getProducts()).status(200);
+            }
+        
         } catch (err: any){
             res.json(err.message).status(204);
         }

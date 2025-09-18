@@ -20,6 +20,14 @@ class ProductService{
         return await this.productRepository.getProductById(id);
     }
 
+    async getProductByName(name: string){
+        // Implementar busca de produto por nome;
+    }
+
+    async getProductByPrice(minPrice: string, maxPrice: string){
+        // Implementar busca de produto por preço;
+    }
+
     async addProduct(product: Product): Promise<string>{
         product.id = uuidv4();
         product.createdAt = new Date;

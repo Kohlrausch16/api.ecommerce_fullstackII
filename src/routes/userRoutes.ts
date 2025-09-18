@@ -2,13 +2,12 @@ import { Router } from "express";
 import UserController from "../Controller/UserController";
 
 const userRouter = Router();
-const userController = new UserController();
+const userController = new UserController;
 
 userRouter.get('/usuario', userController.getUsers);
 userRouter.get('/usuario/:id', userController.getUserById);
-userRouter.post('/usuario', userController.addUser);
-userRouter.put('/usuario/:id', userController.updateUser);
-userRouter.delete('/usuario/:id', userController.deleteUser);
-
+userRouter.post('/usuario');
+userRouter.put('/usuario/:id');
+userRouter.delete('/usuario/:id');
 
 export default userRouter;
