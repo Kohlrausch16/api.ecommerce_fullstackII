@@ -1,7 +1,7 @@
-import { Product } from "../../../Entities/Product";
+import { Product } from "../../Entities/Product";
 import bcrypt from 'bcrypt';
 
-class ServiceUpdateHelper{
+class ServiceHelper{
 
     toString(colors: string[]): string{
         return colors.toString();
@@ -16,4 +16,4 @@ class ServiceUpdateHelper{
     }
 }
 
-export default ServiceUpdateHelper;
+export default ServiceHelper;

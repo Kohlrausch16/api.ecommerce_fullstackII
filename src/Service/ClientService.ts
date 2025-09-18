@@ -1,5 +1,5 @@
-import { Client } from "../../Entities/Client";
-import ClientRepository from "../../Repository/ClientRepository";
+import { Client } from "../Entities/Client";
+import ClientRepository from "../Repository/ClientRepository";
 
 class ClientService{
 

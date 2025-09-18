@@ -1,5 +1,5 @@
 import { Client } from "../Entities/Client";
-import ClientService from "../src/Service/ClientService";
+import ClientService from "../Service/ClientService";
 
 import { Request, Response } from "express";
 

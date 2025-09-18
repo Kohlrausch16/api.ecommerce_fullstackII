@@ -5,7 +5,7 @@ import cartItemRouter from "./src/routes/CartItemRoutes";
 import cartRouter from "./src/routes/CartRoutes";
 import authRoutes from "./src/routes/AuthenticationRoutes";
 import productRouter from "./src/routes/ProductRoutes";
-import userRouter from "./src/routes/UserRoutes";
+import userRouter from "./src/routes/userRoutes";
 
 const server = express();
 dotenv.config();

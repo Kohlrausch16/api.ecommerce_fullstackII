@@ -5,7 +5,7 @@ export type User = {
     userName: string;
     email: string;
     password: string;
-    permissionList: string[];
+    permissionList: string[] | string;
     createdAt: Date;
     updatedAt: Date;
 }
