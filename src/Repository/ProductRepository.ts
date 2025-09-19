@@ -17,14 +17,20 @@ class ProductRepository{
         return foundProduct[0];
     }
 
-    async getProductByName(name: string){
-        // Implementar busca de produto por nome;
+    async getProductByName(name: string): Promise<Product[]>{
+        const foundProduct: Product[] = await this.db.exec("SELECT * FROM product WHERE name LIKE '%' || ? || '%'", [name]);
+        
+        if(foundProduct.length < 1)
+            if(foundProduct.length < 1) throw new Error(`Produto ${name} não encontrado!`);
+
+        return foundProduct;
     }
 
-    async getProductByPrice(minPrice: string, maxPrice: string){
-        // Implementar busca de produto por preço;
+    async getProductByPrice(minPrice: string, maxPrice: string): Promise<Product[]>{
+
+        return await this.db.exec('SELECT * FROM product WHERE price >= ? AND price <= ?', [minPrice, maxPrice]);
     }
-    
+
     async addProduct(product: Product): Promise<string>{
         await this.db.exec('INSERT INTO product (id, name, price, height, width, length, color, description, year, status, createdAt, updatedAt, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [product.id, product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.createdAt, product.updatedAt, product.userId]);
 
