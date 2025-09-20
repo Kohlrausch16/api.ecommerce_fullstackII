@@ -14,6 +14,12 @@ class UserService{
         return await this.userRepository.getUserById(id as string);
     }
 
+    async addUser(user: User): Promise<string>{
+        user.createdAt = new Date;
+        user.updatedAt = new Date;
+        return await this.userRepository.addUser(user);
+    }
+
 }
 
 export default UserService;

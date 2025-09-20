@@ -50,8 +50,6 @@ class ProductService{
         product.createdAt = new Date;
         product.updatedAt = new Date;
 
-        await this.serviceHelper.getUserId();
-
         product.color = this.serviceHelper.toString(product.color as string[]);
         return await this.productRepository.addProduct(product);
     }

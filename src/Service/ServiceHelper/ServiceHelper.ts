@@ -1,6 +1,8 @@
 import { Product } from "../../Entities/Product";
 import bcrypt from 'bcrypt';
 import { Request } from "express";
+import { Client } from "../../Entities/Client";
+import { User } from "../../Entities/User";
 class ServiceHelper{
 
     toString(colors: string[]): string{
@@ -16,11 +18,21 @@ class ServiceHelper{
     }
 
     getUserId(){
-        return (async (req: Request) => {
-            console.log('Bateu no getUserId');
-        const token = req.headers;
-        console.log(token);
-        });
+    }
+
+    
+    parseClientIntoUser(client: Client, password: string): User{
+        const clientPermisisons = ['get-product'];
+        var user: User = {id: '', userName: '', email: '', password: '', permissionList: '', createdAt: new Date, updatedAt: new Date};
+
+        user.id = client.id;
+        user.userName = client.firstName + client.lastName;
+        user.email = user.email;
+        user.password = password;
+        user.permissionList = clientPermisisons;
+        
+
+        return user;
     }
 }
 

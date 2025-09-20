@@ -1,5 +1,5 @@
 import { Product } from "../Entities/Product";
-import { repositoryURLBuilderHelper } from "./RepositoryHelper/RepositoryURLBuilderHelper";
+import { repositoryURLBuilderHelper } from "./RepositoryHelper/RepositoryHelper";
 
 class ProductRepository{
 

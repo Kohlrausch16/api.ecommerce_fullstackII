@@ -1,21 +1,33 @@
 import { Client } from "../Entities/Client";
-
+import UserRepository from "./UserRepository";
+import { repositoryURLBuilderHelper } from "./RepositoryHelper/RepositoryHelper";
 
 class ClientRepository{
 
     private db = require('../Database/dbConfig');
+    private userRepository = new UserRepository;
 
     async getClients(): Promise<Client[]>{
-        return this.db;
+        return await this.db.exec('SELECT * FROM client');
     }
 
     async getClientById(id: string): Promise<Client>{
-        return this.db[0];
+        return await this.db.exec('SELECT * FROM client WHERE id = ?', [id]);
     }
 
-    async getAddClient(client: Client): Promise<string>{
-        return 'Cliente criado com sucesso :)';
+    async addClient(client: Client): Promise<string>{
+        await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [client.id, client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adressId, client.cartId, client.userId, client.createdAt, client.updatedAt]);
+
+        return repositoryURLBuilderHelper(client.id);
+
     }
+
+
+
+
+
+
+
 
     async updateClient(id: string, client: Client): Promise<string>{
         return 'Cliente atualizado com sucesso :)';
