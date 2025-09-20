@@ -12,29 +12,28 @@ class ClientRepository{
     }
 
     async getClientById(id: string): Promise<Client>{
-        return await this.db.exec('SELECT * FROM client WHERE id = ?', [id]);
+        const foundClient = await this.db.exec('SELECT * FROM client WHERE id = ?', [id]);
+
+        if(foundClient.length < 1)
+            throw new Error (`Cliente ${id} não encontrado`);
+
+        return foundClient;
     }
 
     async addClient(client: Client): Promise<string>{
         await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [client.id, client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adressId, client.cartId, client.userId, client.createdAt, client.updatedAt]);
 
         return repositoryURLBuilderHelper(client.id);
-
     }
-
-
-
-
-
-
-
 
     async updateClient(id: string, client: Client): Promise<string>{
         return 'Cliente atualizado com sucesso :)';
     }
 
     async deleteClient(id: string): Promise<string>{
-        return `Cliente ${id} deletado com sucesso :)`;
+        await this.userRepository.deleteuser(id);
+        await this.db.exec('DELETE FROM client WHERE id = ?', [id]);
+        return `Cliente ${id} deletado com sucesso!`;
     }
 
     async patchClientStatus(id: string): Promise<string>{

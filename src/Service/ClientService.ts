@@ -24,7 +24,7 @@ class ClientService{
         client.createdAt = new Date;
         client.updatedAt = new Date;
 
-        const user: User = this.serviceHelper.parseClientIntoUser(client, client.password);
+        const user: User = await this.serviceHelper.parseClientIntoUser(client, client.password);
     
         await this.userService.addUser(user);
         return await this.clientRepository.addClient(client as Client);

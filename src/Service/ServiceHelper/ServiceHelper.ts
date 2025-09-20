@@ -9,8 +9,8 @@ class ServiceHelper{
         return colors.toString();
     }
 
-    toArray(colors: string): string[]{
-        return colors.split(',')
+    toArray(value: string): string[]{
+        return value.split(',');
     }
 
     hashPassword(password: string): Promise<string>{
@@ -19,21 +19,19 @@ class ServiceHelper{
 
     getUserId(){
     }
-
     
-    parseClientIntoUser(client: Client, password: string): User{
-        const clientPermisisons = ['get-product'];
+    async parseClientIntoUser(client: Client, password: string): Promise<User>{
+        const clientPermisisons = 'get-product, get-product-by-id';
         var user: User = {id: '', userName: '', email: '', password: '', permissionList: '', createdAt: new Date, updatedAt: new Date};
 
         user.id = client.id;
-        user.userName = client.firstName + client.lastName;
-        user.email = user.email;
-        user.password = password;
+        user.userName = client.firstName + ' ' + client.lastName;
+        user.email = client.email;
+        user.password = await this.hashPassword(password);
         user.permissionList = clientPermisisons;
         
-
         return user;
-    }
+    }   
 }
 
 export default ServiceHelper;

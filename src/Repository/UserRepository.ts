@@ -14,9 +14,12 @@ class UserRepository{
         return foundUser[0];
     }
 
-    async addUser(user: User): Promise<string>{
-        await this.db.exec('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', [user.id, user.userName, user.email, user.password, user.permissionList as string, user.createdAt, user.updatedAt]);
-        return repositoryURLBuilderHelper(user.id);       
+    async addUser(user: User): Promise<void>{
+        await this.db.exec('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', [user.id, user.userName, user.email, user.password, user.permissionList as string, user.createdAt, user.updatedAt]);       
+    }
+
+    async deleteuser(id: string): Promise<void>{
+        await this.db.exec('DELETE FROM user WHERE id = ?', [id]);
     }
 
 }

@@ -1,23 +1,32 @@
 import { User } from "../Entities/User";
 import UserRepository from "../Repository/UserRepository";
+import ServiceHelper from "./ServiceHelper/ServiceHelper";
 
 
 class UserService{
 
     private userRepository = new UserRepository;
+    private serviceHelper = new ServiceHelper;
 
     async getUsers(): Promise<User[]>{
-        return await this.userRepository.getUsers();
+        let users = await this.userRepository.getUsers();
+        users.map((item: User) => {
+            return item.permissionList = this.serviceHelper.toArray(item.permissionList as string);
+        });
+
+        return users;
     }
 
     async getUserById(id: string): Promise<User>{
-        return await this.userRepository.getUserById(id as string);
+        const foundUser: User = await this.userRepository.getUserById(id as string);
+        foundUser.permissionList = this.serviceHelper.toArray(foundUser.permissionList as string);
+        return foundUser;
     }
 
-    async addUser(user: User): Promise<string>{
+    async addUser(user: User): Promise<void>{
         user.createdAt = new Date;
         user.updatedAt = new Date;
-        return await this.userRepository.addUser(user);
+        await this.userRepository.addUser(user);
     }
 
 }
