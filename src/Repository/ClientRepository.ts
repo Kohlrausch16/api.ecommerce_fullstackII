@@ -36,10 +36,6 @@ class ClientRepository{
         return `Cliente ${id} deletado com sucesso!`;
     }
 
-    async patchClientStatus(id: string): Promise<string>{
-        return `Status do cliente ${id} alterado com sucesso :)`;
-    }
-
     async patchCart(clientId: string, cartId: string): Promise<string>{
         return `Novo carrinho ${cartId} adicionado ao carrinho do cliente ${clientId} :)`;
     }

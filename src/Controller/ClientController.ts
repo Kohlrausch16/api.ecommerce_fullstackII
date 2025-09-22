@@ -49,14 +49,6 @@ class ClientController{
             res.json(err.message).status(400);
         }
     }
-
-    async patchClientStatus(req: Request, res: Response){
-        try{
-            res.json(await clientService.patchClientStatus(req.params.id)).status(200);
-        } catch(err: any){
-            res.json(err.message).status(400);
-        }
-    }
 }
 
 export default ClientController;

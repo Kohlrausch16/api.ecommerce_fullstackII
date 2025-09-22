@@ -44,10 +44,6 @@ class ClientService{
         return await this.clientRepository.deleteClient(id as string);
     }
 
-    async patchClientStatus(id: string): Promise<string>{
-        return await this.clientRepository.patchClientStatus(id as string);
-    }
-
     async patchCart(clientId: string, cartId: string): Promise<string>{
         return await this.clientRepository.patchCart(clientId as string, cartId as string);
     }
