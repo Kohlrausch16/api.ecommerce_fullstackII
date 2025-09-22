@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import UserService from "../Service/UserService";
+import UserRepository from "../Repository/UserRepository";
 
 const userService = new UserService;
+const userRepository = new UserRepository;
 
 class UserController{
 
@@ -19,6 +21,11 @@ class UserController{
         } catch(err: any){
             res.json(err.message).status(204);
         }
+    }
+
+    async deleteUser(req: Request, res: Response){
+        res.json(await userRepository.deleteuser(req.params.id));
+        
     }
 }
 

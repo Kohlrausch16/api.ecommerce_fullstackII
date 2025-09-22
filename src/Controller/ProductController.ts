@@ -44,6 +44,7 @@ class ProductController{
 
     async updateProduct(req: Request, res: Response){
         try{
+            await validateProduct.validate(req.body, {stripUnknown : true});
             res.json(await productService.updateProduct(req.params.id as string, req.body as Product)).status(200);
         } catch(err: any){
             res.json(err.message).status(400);

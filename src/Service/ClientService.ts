@@ -31,10 +31,16 @@ class ClientService{
     }
 
     async updateClient(id: string, client: Client): Promise<string>{
+        client.updatedAt = new Date;
+
+        const user: User = await this.serviceHelper.parseClientIntoUser(client, client.password);
+
+        await this.userService.updateUser(id, user);
         return await this.clientRepository.updateClient(id as string, client as Client);
     }
 
     async deleteClient(id: string): Promise<string>{
+        await this.userService.deleteUser(id);
         return await this.clientRepository.deleteClient(id as string);
     }
 

@@ -1,11 +1,9 @@
 import { Client } from "../Entities/Client";
-import UserRepository from "./UserRepository";
 import { repositoryURLBuilderHelper } from "./RepositoryHelper/RepositoryHelper";
 
 class ClientRepository{
 
     private db = require('../Database/dbConfig');
-    private userRepository = new UserRepository;
 
     async getClients(): Promise<Client[]>{
         return await this.db.exec('SELECT * FROM client');
@@ -27,11 +25,13 @@ class ClientRepository{
     }
 
     async updateClient(id: string, client: Client): Promise<string>{
-        return 'Cliente atualizado com sucesso :)';
+        await this.getClientById(id);
+        await this.db.exec('UPDATE client SET firstName = ?, lastName = ?, cpf = ?, phoneNumber = ?, email = ?, activeStatus = ?, adressId = ?, cartId = ?, userId = ?, updatedAt = ? WHERE id = ?', [client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adressId, client.cartId, client.userId, client.updatedAt, id]);
+        
+        return repositoryURLBuilderHelper(id);
     }
 
     async deleteClient(id: string): Promise<string>{
-        await this.userRepository.deleteuser(id);
         await this.db.exec('DELETE FROM client WHERE id = ?', [id]);
         return `Cliente ${id} deletado com sucesso!`;
     }

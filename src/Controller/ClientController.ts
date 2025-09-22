@@ -35,6 +35,7 @@ class ClientController{
 
     async updateClient(req: Request, res: Response){
         try{
+            await validateClient.validate(req.body);
             res.json(await clientService.updateClient(req.params.id, req.body)).status(200);
         } catch(err: any){
             res.json(err.message).status(400);
