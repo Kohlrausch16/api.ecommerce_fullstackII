@@ -14,3 +14,6 @@ npm run start
 ```
 
 O servidor irá inciar na porta 3000.
+
+Endpoints:
+
