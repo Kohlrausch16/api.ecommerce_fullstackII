@@ -1,6 +1,6 @@
 import { Product } from "../../Entities/Product";
 import bcrypt from 'bcrypt';
-import { Request } from "express";
+import { Request, response } from "express";
 import { Client } from "../../Entities/Client";
 import { User } from "../../Entities/User";
 class ServiceHelper{
@@ -17,7 +17,8 @@ class ServiceHelper{
         return bcrypt.hash(password, 10);
     }
 
-    getUserId(){
+    getUserId(token: string){
+        console.log(token);
     }
     
     async parseClientIntoUser(client: Client, password: string): Promise<User>{
