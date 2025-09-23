@@ -9,29 +9,47 @@ class ProductService{
     private serviceHelper = new ServiceUpdateHelper;
 
     async getProducts(): Promise<Product[]>{
-        const products: Product[] = await this.productRepository.getProducts();
+        const products: Product[] = await this.productRepository.getProducts()
+        
         products.map((item: Product) => {
-            if(item.color) item.color = this.serviceHelper.toArray(item.color as string);
-        })
+            return item.color = this.serviceHelper.toArray(item.color as string);
+        });
+
         return products;
     }
 
     async getProductById(id: string): Promise<Product>{
-        return await this.productRepository.getProductById(id);
+        const foundProduct = await this.productRepository.getProductById(id);
+
+        foundProduct.color = this.serviceHelper.toArray(foundProduct.color as string);
+
+        return foundProduct;
     }
 
-    async getProductByName(name: string){
-        // Implementar busca de produto por nome;
+    async getProductByName(name: string): Promise<Product[]>{
+        const products: Product[] = await this.productRepository.getProductByName(name);
+
+         products.map((item: Product) => {
+            return item.color = this.serviceHelper.toArray(item.color as string);
+        });
+
+        return products;
     }
 
-    async getProductByPrice(minPrice: string, maxPrice: string){
-        // Implementar busca de produto por preço;
+    async getProductByPrice(minPrice: string, maxPrice: string): Promise<Product[]>{
+       const products: Product[] = await this.productRepository.getProductByPrice(minPrice, maxPrice);
+
+        products.map((item: Product) => {
+            return item.color = this.serviceHelper.toArray(item.color as string);
+        });
+        return products;
     }
 
     async addProduct(product: Product): Promise<string>{
         product.id = uuidv4();
         product.createdAt = new Date;
         product.updatedAt = new Date;
+
         product.color = this.serviceHelper.toString(product.color as string[]);
         return await this.productRepository.addProduct(product);
     }
@@ -42,8 +60,9 @@ class ProductService{
         return await this.productRepository.updateProduct(id, product);
     }
 
-    async patchProductStatus(id: string): Promise<string>{
-        return await this.productRepository.patchProduct(id);
+    async patchProductStatus(id: string): Promise<Product>{
+        await this.productRepository.patchProduct(id);
+        return this.getProductById(id);
     }
 
     async deleteProduct(id: string){
