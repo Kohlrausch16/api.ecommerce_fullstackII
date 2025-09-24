@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import clientRouter from "./src/routes/ClientRoutes";
 import cartItemRouter from "./src/routes/CartItemRoutes";
 import cartRouter from "./src/routes/CartRoutes";
@@ -12,6 +13,7 @@ dotenv.config();
 
 const port = process.env.PORT;
 
+server.use(cors());
 server.use(express.urlencoded({extended: true}));
 server.use(express.json());
 
