@@ -6,6 +6,5 @@ const userController = new UserController;
 
 userRouter.get('/usuario', userController.getUsers);
 userRouter.get('/usuario/:id', userController.getUserById);
-userRouter.delete('/usuario/:id', userController.deleteUser);
 
 export default userRouter;

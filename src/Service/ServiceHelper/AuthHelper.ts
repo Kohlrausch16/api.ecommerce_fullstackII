@@ -33,7 +33,7 @@ class AuthHelper{
     }
 
     async decodeJWT(payload: any): Promise<string>{
-        const decodedToken: Jwt | null = jwt.decode(payload, { complete : true});
+        const decodedToken: Jwt | null = jwt.decode(payload, { complete : true });
 
         if(!decodedToken)
             throw new Error('Unable to decode token');
@@ -42,10 +42,8 @@ class AuthHelper{
     }
 
     async generateToken(payload: User, option: string): Promise<string>{
-
-        if(option === 'token'){
+        if(option === 'token')
             return jwt.sign(payload, this.jwtSecret as string , {expiresIn: this.tokenExpiration} as SignOptions);
-        }
 
         return jwt.sign(payload, this.jwtSecret as string , {expiresIn: this.refreshTokenExpiration} as SignOptions);
     }

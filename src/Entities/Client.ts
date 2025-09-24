@@ -12,7 +12,7 @@ export type Client = {
     password: string;
     activeStatus: boolean;
     adressId: UUIDTypes[] | ClientAdress[] | undefined; 
-    cartId: UUIDTypes[] | Cart[] | undefined;
+    cartId: UUIDTypes | Cart[] | undefined;
     userId: UUIDTypes[] | undefined;
     createdAt: Date;
     updatedAt: Date;
