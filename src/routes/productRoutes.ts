@@ -6,9 +6,9 @@ import { authorizationMiddleware } from "../Middleware/AuthorizationMIddleware";
 const productRouter = Router();
 const productController = new ProductController();
 
-productRouter.get('/produto', /*authenticationMiddleware, authorizationMiddleware("get-produto"),*/ productController.getProducts);
+productRouter.get('/produto', /*authenticationMiddleware, authorizationMiddleware('get-products')*/ productController.getProducts);
 productRouter.get('/produto/:id', productController.getProductById);
-productRouter.post('/produto', /*authenticationMiddleware, authorizationMiddleware("add-produto"),*/ productController.addProduct);
+productRouter.post('/produto', productController.addProduct);
 productRouter.put('/produto/:id', productController.updateProduct);
 productRouter.patch('/produto/:id', productController.patchProductStatus)
 productRouter.delete('/produto/:id', productController.deleteProduct);

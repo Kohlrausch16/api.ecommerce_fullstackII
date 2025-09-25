@@ -40,9 +40,7 @@ db.serialize(() => {
             year TEXT,
             status INTEGER DEFAULT 1,
             createdAt TEXT NOT NULL,
-            updatedAt TEXT NOT NULL,
-            userId VARCHAR(255),
-            FOREIGN KEY (userId) REFERENCES user(id)
+            updatedAt TEXT NOT NULL
         )
     `);
 
@@ -53,9 +51,10 @@ db.serialize(() => {
             totalAmount REAL NOT NULL,
             activeStatus INTEGER DEFAULT 1,
             productId VARCHAR(255),
+            cartId VARCHAR(255),
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL,
-            FOREIGN KEY (productId) REFERENCES product(id)
+            FOREIGN KEY (productId) REFERENCES product(id),
             FOREIGN KEY (cartId) REFERENCES cart(id)
         )
     `);
@@ -65,10 +64,8 @@ db.serialize(() => {
             id VARCHAR(255) PRIMARY KEY,
             totalOrder REAL NOT NULL,
             activeStatus INTEGER DEFAULT 1,
-            cartItemId VARCHAR(255),
             createdAt TEXT NOT NULL,
-            updatedAt TEXT NOT NULL,
-            FOREIGN KEY (cartItemId) REFERENCES cart_item(id)
+            updatedAt TEXT NOT NULL
         )
     `);
 

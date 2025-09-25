@@ -13,5 +13,4 @@ export type Product = {
     status: boolean | number;
     createdAt: Date;
     updatedAt: Date;
-    userId: UUIDTypes;
 }

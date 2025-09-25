@@ -3,6 +3,7 @@ import ClientService from "../Service/ClientService";
 
 import { Request, Response } from "express";
 import { validateClient } from "./Schema/ClientSchema";
+import { validateClientAdress } from "./Schema/ClientAdressSchema";
 
 const clientService = new ClientService;
 
@@ -27,6 +28,7 @@ class ClientController{
     async addClient(req: Request, res: Response){
         try{
             await validateClient.validate(req.body);
+            await validateClientAdress.validate(req.body.adress);
             res.json(await clientService.addClient(req.body)).status(201);
         } catch(err: any){
             res.json(err.message).status(400);

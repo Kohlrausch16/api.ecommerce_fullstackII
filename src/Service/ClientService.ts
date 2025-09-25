@@ -4,14 +4,14 @@ import { v4 as uuidv4 } from 'uuid';
 import ServiceHelper from "./ServiceHelper/ServiceHelper";
 import { User } from "../Entities/User";
 import UserService from "./UserService";
-import CartService from "./CartService";
+//import CartService from "./CartService";
 
 class ClientService{
 
     private clientRepository = new ClientRepository;
     private userService = new UserService;
     private serviceHelper = new ServiceHelper;
-    private cartService = new CartService;
+    //private cartService = new CartService;
 
     async getClients(): Promise<Client[]>{
         return await this.clientRepository.getClients();
@@ -27,7 +27,7 @@ class ClientService{
         client.updatedAt = new Date;
 
         const user: User = await this.serviceHelper.parseClientIntoUser(client, client.password);
-        client.cartId = await this.cartService.createCart();
+        //client.cartId = await this.cartService.createCart();
         await this.userService.addUser(user);
         return await this.clientRepository.addClient(client as Client);
     }
