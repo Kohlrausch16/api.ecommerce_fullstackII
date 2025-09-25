@@ -14,7 +14,7 @@ class CartService{
     private cartRepository = new CartRepository;
     private authHelper = new AuthHelper;
 
-    async getUserCart(token: string): Promise<Cart>{
+    async getUserCart(token: string): Promise<string>{
         const client: User = await this.authHelper.verifyJWT(token);
         return await this.cartRepository.getCart(client.id as string);
     }

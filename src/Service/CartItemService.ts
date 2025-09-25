@@ -24,20 +24,18 @@ class CartItemService {
 
 */   async addCartItem(cartItemRequest: {cartId: string, productId: string, qtd: number}, token: string): Promise<CartItem> {
         const foundProduct: Product = await this.productService.getProductById(cartItemRequest.productId);
-        const foundCart: any = await this.cartService.getUserCart(token);
+        const foundCart: string = await this.cartService.getUserCart(token);
 
         const cartItem: CartItem = {
             id: uuidv4(),
             productQtd: cartItemRequest.qtd,
-            cartId: foundCart.value,
+            cartId: foundCart,
             productId: foundProduct.id,
             totalAmount: (foundProduct.price * cartItemRequest.qtd),
             activetatus: true, 
             createdAt: new Date(),
             updatedAt: new Date()
         };
-
-        console.log(cartItem);
         
         return await cartItemRepository.addCartItem(cartItem);
     }

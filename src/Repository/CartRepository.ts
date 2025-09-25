@@ -5,9 +5,13 @@ class CartRepository{
 
     private db = require('../Database/dbConfig');
 
-    async getCart(id: string): Promise<Cart>{
-        const foundCart: Cart[] = await this.db.exec('SELECT cartId FROM client WHERE id = ?', [id]);
-        return foundCart[0];
+    async getCart(id: string): Promise<string>{
+        const foundCart: any = await this.db.exec('SELECT cartId FROM client WHERE id = ?', [id]);
+
+        if(foundCart.length < 1)
+            throw new Error(`Cart ${id} not found`);
+
+        return foundCart[0].cartId as string;
     }
 
     async createCart(cart: Cart): Promise<UUIDTypes>{
