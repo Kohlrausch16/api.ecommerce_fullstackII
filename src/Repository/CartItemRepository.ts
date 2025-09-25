@@ -1,8 +1,11 @@
-/*import { CartItem } from "../Entities/CartItem";
+import { CartItem } from "../Entities/CartItem";
+import ProductService from "../Service/ProductService";
 
 class CartItemRepository {
-    private cartItems: CartItem[] = [];
+    private db = require('../Database/dbConfig');
 
+
+    /*
     async getCartItems(): Promise<CartItem[]> {
         return this.cartItems;
     }
@@ -10,12 +13,12 @@ class CartItemRepository {
     async getCartItemById(id: string): Promise<CartItem | undefined> {
         return this.cartItems.find(item => item.id === id);
     }
-
+*/
     async addCartItem(cartItem: CartItem): Promise<CartItem> {
-        this.cartItems.push(cartItem);
+        
         return cartItem;
     }
-
+/*
     async updateCartItem(id: string, updatedData: Partial<CartItem>): Promise<CartItem | undefined> {
         const index = this.cartItems.findIndex(item => item.id === id);
         if (index === -1) return undefined;
@@ -40,7 +43,7 @@ class CartItemRepository {
         cartItem.activetatus = !cartItem.activetatus;
         cartItem.updatedAt = new Date();
         return cartItem;
-    }
+    }*/
 }
 
-export default CartItemRepository;*/
+export default CartItemRepository;

@@ -7,6 +7,7 @@ export type CartItem = {
     totalAmount: number;
     activetatus: boolean;
     productId: UUIDTypes | Product;
+    cartId: UUIDTypes | string;
     createdAt: Date;
     updatedAt: Date;
 }

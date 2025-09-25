@@ -1,9 +1,12 @@
-/*import { Request, Response } from "express";
+import { Request, Response } from "express";
 import CartItemService from "../Service/CartItemService";
+import { validateCartItem } from "./Schema/CartItemSchema";
 
 const cartItemService = new CartItemService();
 
 class CartItemController {
+
+    /*
     async getCartItems(req: Request, res: Response) {
         try {
             res.json(await cartItemService.getCartItems()).status(200);
@@ -19,15 +22,17 @@ class CartItemController {
             res.json(err.message).status(404);
         }
     }
-
+*/
     async addCartItem(req: Request, res: Response) {
         try {
-            res.json(await cartItemService.addCartItem(req.body)).status(201);
+            await validateCartItem.validate(req.body);
+            const { token } = req.headers;
+            res.json(await cartItemService.addCartItem(req.body, token as string)).status(201);
         } catch (err: any) {
             res.json(err.message).status(400);
         }
     }
-
+/*
     async updateCartItem(req: Request, res: Response) {
         try {
             res.json(await cartItemService.updateCartItem(req.params.id, req.body)).status(200);
@@ -51,6 +56,7 @@ class CartItemController {
             res.json(err.message).status(400);
         }
     }
+        */
 }
 
-export default CartItemController;*/
+export default CartItemController;

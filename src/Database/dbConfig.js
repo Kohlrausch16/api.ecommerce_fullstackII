@@ -56,6 +56,7 @@ db.serialize(() => {
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL,
             FOREIGN KEY (productId) REFERENCES product(id)
+            FOREIGN KEY (cartId) REFERENCES cart(id)
         )
     `);
 

@@ -6,10 +6,8 @@ class CartRepository{
     private db = require('../Database/dbConfig');
 
     async getCart(id: string): Promise<Cart>{
-    
-        const foundCart: any = await this.db.exec('SELECT cartId FROM client WHERE id = ?', [id]);
-        console.log(foundCart);
-        return foundCart;
+        const foundCart: Cart[] = await this.db.exec('SELECT cartId FROM client WHERE id = ?', [id]);
+        return foundCart[0];
     }
 
     async createCart(cart: Cart): Promise<UUIDTypes>{

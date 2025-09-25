@@ -24,7 +24,6 @@ class CartService{
         return await this.cartRepository.createCart(cart);
     }
 
-
 }
 
 export default CartService;
