@@ -10,23 +10,23 @@ class ClientRepository{
     }
 
     async getClientById(id: string): Promise<Client>{
-        const foundClient = await this.db.exec('SELECT * FROM client WHERE id = ?', [id]);
+        const foundClient: Client[] = await this.db.exec('SELECT * FROM client WHERE id = ?', [id]);
 
         if(foundClient.length < 1)
             throw new Error (`Cliente ${id} não encontrado`);
 
-        return foundClient;
+        return foundClient[0];
     }
 
     async addClient(client: Client): Promise<string>{
-        await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [client.id, client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adressId, client.cartId, client.userId, client.createdAt, client.updatedAt]);
+        await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [client.id, client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adress.id, client.cartId, client.userId, client.createdAt, client.updatedAt]);
 
         return repositoryURLBuilderHelper(client.id);
     }
 
     async updateClient(id: string, client: Client): Promise<string>{
         await this.getClientById(id);
-        await this.db.exec('UPDATE client SET firstName = ?, lastName = ?, cpf = ?, phoneNumber = ?, email = ?, activeStatus = ?, adressId = ?, cartId = ?, userId = ?, updatedAt = ? WHERE id = ?', [client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adressId, client.cartId, client.userId, client.updatedAt, id]);
+        await this.db.exec('UPDATE client SET firstName = ?, lastName = ?, cpf = ?, phoneNumber = ?, email = ?, activeStatus = ?, adressId = ?, cartId = ?, userId = ?, updatedAt = ? WHERE id = ?', [client.firstName, client.lastName, client.cpf, client.phoneNumber, client.email, client.activeStatus, client.adress.id, client.cartId, client.userId, client.updatedAt, id]);
         
         return repositoryURLBuilderHelper(id);
     }

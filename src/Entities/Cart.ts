@@ -5,7 +5,7 @@ export type Cart = {
     id: UUIDTypes;
     totalOrder: number;
     activeStatus: boolean;
-    cartItemId: UUIDTypes[] | CartItem[];
+    cartItemId: CartItem[];
     createdAt: Date;
     updatedAt: Date;
 }

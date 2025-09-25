@@ -11,9 +11,9 @@ export type Client = {
     email: string;
     password: string;
     activeStatus: boolean;
-    adressId: UUIDTypes[] | ClientAdress[] | undefined; 
+    adress: ClientAdress; 
     cartId: UUIDTypes | Cart[] | undefined;
-    userId: UUIDTypes[] | undefined;
+    userId: UUIDTypes | undefined;
     createdAt: Date;
     updatedAt: Date;
 }

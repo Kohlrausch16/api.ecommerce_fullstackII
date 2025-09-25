@@ -1,4 +1,5 @@
 import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
+import { Cart } from "./Cart";
 import { Product } from "./Product";
 
 export type CartItem = {
@@ -6,8 +7,8 @@ export type CartItem = {
     productQtd: number;
     totalAmount: number;
     activetatus: boolean;
-    productId: UUIDTypes | Product;
-    cartId: UUIDTypes | string;
+    productId: Product;
+    cartId: Cart;
     createdAt: Date;
     updatedAt: Date;
 }
