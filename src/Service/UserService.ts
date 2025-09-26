@@ -1,40 +1,27 @@
+import { ClientDTO } from "../Entities/DTO/ClientDTO";
 import { User } from "../Entities/User";
 import UserRepository from "../Repository/UserRepository";
-import ServiceHelper from "./ServiceHelper/ServiceHelper";
+import ClassConstructorServiceHelper from "./ServiceHelper/ClassConstructorServiceHelper";
 
 
 class UserService{
 
     private userRepository = new UserRepository;
-    private serviceHelper = new ServiceHelper;
+    private classConstructor = new ClassConstructorServiceHelper;
 
     async getUsers(): Promise<User[]>{
-        let users = await this.userRepository.getUsers();
-        users.map((item: User) => {
-            return item.permissionList = this.serviceHelper.toArray(item.permissionList as string);
-        });
-
-        return users;
+        return await this.userRepository.getUsers();
     }
 
     async getUserById(id: string): Promise<User>{
-        const foundUser: User = await this.userRepository.getUserById(id as string);
-        foundUser.permissionList = this.serviceHelper.toArray(foundUser.permissionList as string);
-        return foundUser;
+        return await this.userRepository.getUserById(id);
     }
 
-    async addUser(user: User): Promise<void>{
-        user.createdAt = new Date;
-        user.updatedAt = new Date;
-        await this.userRepository.addUser(user);
-    }
+    async addUser(clientDTO: ClientDTO): Promise<User>{
+        const createdUser: User = await this.classConstructor.userConstructor({id: '', userName: clientDTO.firstName + ' ' + clientDTO.lastName, email: clientDTO.email, password: clientDTO.password, permissionList: '' as string, createdAt: null, updatedAt: null});
 
-    async updateUser(id: string, user: User): Promise<void>{
-        await this.userRepository.updateUser(id, user);
-    }
-
-    async deleteUser(id: string): Promise<void>{
-        await this.userRepository.deleteuser(id as string);
+        console.log(createdUser);
+        return createdUser;
     }
 
 }

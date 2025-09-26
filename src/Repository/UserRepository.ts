@@ -6,7 +6,7 @@ class UserRepository{
     private db = require('../Database/dbConfig');
 
     async getUsers(): Promise<User[]>{
-        return await this.db.exec('SELECT * FROM user')
+        return await this.db.exec('SELECT * FROM user');
     }
 
     async getUserById(id: string): Promise<User>{
@@ -18,8 +18,10 @@ class UserRepository{
         return foundUser[0];
     }
 
-    async addUser(user: User): Promise<void>{
-        await this.db.exec('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', [user.id, user.userName, user.email, user.password, user.permissionList as string, user.createdAt, user.updatedAt]);       
+    async addUser(user: User): Promise<User>{
+        await this.db.exec('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', [user.id, user.userName, user.email, user.password, user.permissionList as string, user.createdAt, user.updatedAt]);  
+        
+        return await this.getUserById(user.id);
     }
 
     async updateUser(id: string, user: User): Promise<void>{

@@ -1,12 +1,11 @@
-import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
 
 export type ClientAdress = {
-    id: UUIDTypes;
+    id: string;
     street: string;
     number: string;
     block: string;
     city: string;
     state: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date | null;
+    updatedAt: Date | null;
 }

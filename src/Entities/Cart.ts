@@ -1,11 +1,10 @@
-import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
 import { CartItem } from "./CartItem";
 
 export type Cart = {
-    id: UUIDTypes;
+    id: string;
     totalOrder: number;
     activeStatus: boolean;
-    cartItemId: CartItem[];
-    createdAt: Date;
-    updatedAt: Date;
+    cartItems: CartItem[] | [];
+    createdAt: Date | null;
+    updatedAt: Date | null;
 }

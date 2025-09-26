@@ -1,9 +1,5 @@
-import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
-import { Cart } from "./Cart";
-import { ClientAdress } from "./ClientAdress";
-
 export type Client = {
-    id: UUIDTypes;
+    id: string;
     firstName: string;
     lastName: string;
     cpf: string;
@@ -11,9 +7,9 @@ export type Client = {
     email: string;
     password: string;
     activeStatus: boolean;
-    adress: ClientAdress; 
-    cartId: UUIDTypes | Cart[] | undefined;
-    userId: UUIDTypes | undefined;
-    createdAt: Date;
-    updatedAt: Date;
+    adress: string; 
+    cartId: string;
+    userId: string;
+    createdAt: Date | null;
+    updatedAt: Date | null;
 }

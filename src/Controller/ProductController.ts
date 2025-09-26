@@ -34,7 +34,7 @@ class ProductController{
     }
     
     async addProduct(req: Request, res: Response){
-        try{
+        try{ 
             await validateProduct.validate(req.body, {stripUnknown : true});
             res.json(await productService.addProduct(req.body as Product)).status(201);
         } catch (err: any){
