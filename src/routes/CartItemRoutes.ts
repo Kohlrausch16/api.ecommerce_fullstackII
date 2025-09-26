@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
+import ClientAdressRepository from "../Repository/ClientAdressRepository";
 
 const cartItemRouter = Router();
+const clientAdressRepository = new ClientAdressRepository;
 
-cartItemRouter.get('/item-carrinho');
-cartItemRouter.get('/item-carrinho/:id');
-cartItemRouter.post('/item-carrinho');
-cartItemRouter.put('/item-carrinho/:id');
-cartItemRouter.delete('/item-carrinho/:id');
+cartItemRouter.get('/item-carrinho', (req: Request, res: Response) => {
+    res.json(clientAdressRepository.getAdressById(req.params.id));
+});
 
 export default cartItemRouter;
