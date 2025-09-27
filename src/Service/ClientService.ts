@@ -4,6 +4,7 @@ import { ClientAdress } from "../Entities/ClientAdress";
 import { ClientDTO } from "../Entities/DTO/ClientDTO";
 import { User } from "../Entities/User";
 import CartService from "./CartService";
+import ClientAdressService from "./ClientAdressService";
 import ClassConstructorServiceHelper from "./ServiceHelper/ClassConstructorServiceHelper";
 import UserService from "./UserService";
 
@@ -12,6 +13,7 @@ class ClientService{
     private classConstructor = new ClassConstructorServiceHelper;
     private userService = new UserService;
     private cartService = new CartService;
+    private clientAdressService = new ClientAdressService;
 
     async getClients(): Promise<void>{
 
@@ -21,22 +23,15 @@ class ClientService{
 
     }
 
-    async addClient(clientDTO: ClientDTO): Promise<ClientDTO>{
-        const createdUser: User = await this.userService.addUser(clientDTO);;
+    async addClient(clientDTO: ClientDTO): Promise<Client>{
+        const createdUser: User = await this.userService.addUser(clientDTO);
         const createdCart: Cart = await this.cartService.addCart(clientDTO);
-
-        console.log('3');
-        const createdAddress: ClientAdress = await this.classConstructor.clientAdressConstructor(clientDTO.adress as ClientAdress);
+        const createdAddress: ClientAdress = await this.clientAdressService.addAdress(clientDTO);
         
-        console.log('4');
         const createdClient: Client = await this.classConstructor.clientConstuctor(clientDTO, createdAddress, createdCart, createdUser);
 
-        // persistir um Usuario;
-        // persistir um Endereço;
-        // persistir um Carrinho;
-        //persistir classe;
-
-        return await clientDTO;
+    
+        return await createdClient;
     
     }
 

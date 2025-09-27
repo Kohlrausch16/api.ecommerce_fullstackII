@@ -19,9 +19,7 @@ class CartRepository{
     }
 
     async addCart(cartData: Cart): Promise<Cart>{
-
-        console.log(cartData);
-        /*await this.db.exec('INSERT INTO cart (id, totalOrder, activeStatus, createdAt, updatedAt) VALUES (?, ?, ?, ? ,?)', [cartData.id, cartData.totalOrder, cartData.activeStatus, cartData.createdAt, cartData.updatedAt]);*/
+        await this.db.exec('INSERT INTO cart (id, totalOrder, activeStatus, createdAt, updatedAt) VALUES (?, ?, ?, ? ,?)', [cartData.id, cartData.totalOrder, cartData.activeStatus, cartData.createdAt, cartData.updatedAt]);
         return this.getCartById(cartData.id);
     }
 

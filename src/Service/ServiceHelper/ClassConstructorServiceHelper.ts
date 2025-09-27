@@ -45,7 +45,7 @@ class ClassConstructorServiceHelper{
             cpf: clientDTO.cpf,
             phoneNumber: clientDTO.password,
             email: clientDTO.email,
-            password: 'not informed!',
+            password: '***************',
             activeStatus: clientDTO.activeStatus,
             adress: adressData.id, 
             cartId: cartData.id,
