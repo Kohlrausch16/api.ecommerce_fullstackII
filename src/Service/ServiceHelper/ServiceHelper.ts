@@ -16,10 +16,6 @@ class ServiceHelper{
     hashPassword(password: string): Promise<string>{
         return bcrypt.hash(password, 10);
     }
-
-    getUserId(token: string){
-        console.log(token);
-    }
     
     async parseClientIntoUser(client: Client, password: string): Promise<User>{
         const clientPermisisons = 'get-product, get-product-by-id';

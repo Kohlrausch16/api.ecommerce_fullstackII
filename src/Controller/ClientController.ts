@@ -8,7 +8,15 @@ class ClientController{
 
     async getClients(req: Request, res: Response){
         try{
-            
+          res.json(await clientService.getClients()).status(200);
+        } catch (err: any){
+            res.json(err.message).status(404);
+        }
+    }
+
+    async getClientById(req: Request, res: Response){
+        try{
+          res.json(await clientService.getClientById(req.params.id)).status(200);
         } catch (err: any){
             res.json(err.message).status(404);
         }

@@ -5,9 +5,7 @@ const clientRouter = Router();
 const clientController = new ClientController
 
 clientRouter.get('/cliente', clientController.getClients);
-clientRouter.get('/cliente/:id');
+clientRouter.get('/cliente/:id', clientController.getClientById);
 clientRouter.post('/cliente', clientController.addClients);
-clientRouter.put('/cliente/:id')
-clientRouter.delete('/cliente/:id');
 
 export default clientRouter;
