@@ -39,7 +39,13 @@ class ClientRepository{
         await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, password, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [clientData.id, clientData.firstName, clientData.lastName, clientData.cpf, clientData.phoneNumber, clientData.email, clientData.password ,clientData.activeStatus, clientData.adressId, clientData.cartId, clientData.userId, clientData.createdAt, clientData.updatedAt]);
 
         return await this.getClientById(clientData.id);
-    }    
+    }
+    
+    async updateClient(id: string, clientData: Client): Promise<Client>{
+        await this.db.exec('UPDATE client SET firstName = ?, lastName = ?, cpf = ?, phoneNumber = ?, email = ?, password = ?, activeStatus = ?, adressId = ?, cartId = ?, userId = ?, updatedAt = ? WHERE id = ?', [clientData.firstName, clientData.lastName, clientData.cpf, clientData.phoneNumber, clientData.email, clientData.password ,clientData.activeStatus, clientData.adressId, clientData.cartId, clientData.userId, clientData.updatedAt, id]);
+
+        return await this.getClientById(clientData.id);
+    }
 
     async deleteClient(id: string): Promise<string>{
         await this.getClientById(id);

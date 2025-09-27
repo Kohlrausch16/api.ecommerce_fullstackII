@@ -21,6 +21,10 @@ class ClientAdressService{
         return await this.clientAdressRepository.addAdress(createdAddress);
     }
 
+    async updateAdress(id: string, adress: ClientAdress): Promise<ClientAdress>{
+        return adress;
+    }
+
     async deleteAdress(id: string): Promise<string>{
         return await this.clientAdressRepository.deleteAdress(id);
     }

@@ -4,7 +4,7 @@ export type Cart = {
     id: string;
     totalOrder: number;
     activeStatus: boolean;
-    cartItems: CartItem[] | [] | null;
+    cartItems: CartItem[] | null;
     createdAt: Date | null;
     updatedAt: Date | null;
 }

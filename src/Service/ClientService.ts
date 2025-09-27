@@ -43,6 +43,23 @@ class ClientService{
         return await this.getClientById(createdClient.id);    
     }
 
+    async updateClient(id: string, clientDTO: ClientDTO): Promise<ClientDTO>{
+        
+        const foundClient: Client = await this.clientRepository.getClientById(id);
+        const foundUser: User = await this.userService.getUserById(foundClient.userId);
+        const foundAdress: ClientAdress =  await this.clientAdressService.getAdressById(foundClient.adressId);
+
+        const updatedClient: Client = await this.classConstructor.updateClientConstructor(foundClient, clientDTO);
+        const updatedUser: User = await this.classConstructor.updateUserConstructor(foundUser, clientDTO);
+        const updatedAdress: ClientAdress = await this.classConstructor.updateClientAdressConstructor(foundAdress, clientDTO.adress);
+    
+        await this.userService.updateUser(updatedUser.id, updatedUser);
+        await this.clientAdressService.updateAdress(updatedAdress.id, updatedAdress);
+        await this.clientRepository.updateClient(id, updatedClient);
+
+        return await this.getClientById(id);
+    }
+
     async deleteClient(id: string): Promise<string>{
         const foundClient: ClientDTO = await this.getClientById(id);
 

@@ -23,6 +23,12 @@ class ClientAdressRepository{
         return await this.getAdressById(adress.id);
     }
 
+    async updateAdress(id: string, adress: ClientAdress): Promise<ClientAdress>{
+        await this.db.exec('UPDATE client_adress SET rua = ?, numero = ?, bairro = ?, cidade = ?, uf = ?, updatedAt = ? WHERE id = ?', [adress.street, adress.number, adress.block, adress.city, adress.state, adress.updatedAt, id]);
+
+        return await this.getAdressById(adress.id);
+    }
+
     async deleteAdress(id: string): Promise<string>{
         await this.getAdressById(id);
         await this.db.exec('DELETE FROM client_adress WHERE id = ?', [id]);

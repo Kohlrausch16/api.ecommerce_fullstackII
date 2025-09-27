@@ -31,6 +31,15 @@ class ClientController{
         }
     }
 
+    async updateClient(req: Request, res: Response){
+        try{
+            // validar estrutura do DTO!!;
+            res.json(await clientService.updateClient(req.params.id as string, req.body as ClientDTO)).status(201);    
+        } catch (err: any){
+            res.json(err.message).status(400);
+        }
+    }
+
     async deleteClient(req: Request, res: Response){
         try{
           res.json(await clientService.deleteClient(req.params.id)).status(200);

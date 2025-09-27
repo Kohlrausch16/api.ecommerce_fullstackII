@@ -25,7 +25,8 @@ class UserRepository{
     }
 
     async updateUser(id: string, user: User): Promise<void>{
-        await this.db.exec('UPDATE user SET userName = ?, email = ?, password = ?, permissionList = ?, updatedAt = ?', [user.userName, user.email, user.password, user.permissionList as string, user.updatedAt]);
+        console.log(user);
+        await this.db.exec('UPDATE user SET userName = ?, email = ?, password = ?, permissionList = ?, updatedAt = ? WHERE id = ?', [user.userName, user.email, user.password, user.permissionList as string, user.updatedAt, id]);
     }
 
     async deleteUser(id: string): Promise<string>{

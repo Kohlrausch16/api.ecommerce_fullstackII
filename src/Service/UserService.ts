@@ -34,6 +34,10 @@ class UserService{
         return createdUser;
     }
 
+    async updateUser(id: string, user: User): Promise<void>{
+        await this.userRepository.updateUser(id, user);
+    }
+
     async deleteUser(id: string): Promise<string>{
         return await this.userRepository.deleteUser(id);
     }

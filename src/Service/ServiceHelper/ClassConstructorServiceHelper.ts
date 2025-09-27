@@ -76,6 +76,38 @@ class ClassConstructorServiceHelper{
 
         return clientDTO;
     }
+
+    async updateClientConstructor(client: Client, clientDTO: ClientDTO): Promise<Client>{
+        client.firstName = clientDTO.firstName;
+        client.lastName = clientDTO.lastName;
+        client.cpf = clientDTO.cpf;
+        client.phoneNumber = clientDTO.phoneNumber;
+        client.email = clientDTO.email;
+        client.activeStatus = clientDTO.activeStatus;
+        client.updatedAt = new Date;
+
+        return client;
+    }
+
+    async updateUserConstructor(user: User, clientDTO: ClientDTO): Promise<User>{
+        user.userName = clientDTO.firstName + ' ' + clientDTO.lastName;
+        user.email = clientDTO.email;
+        user.password = await this.authHelper.hashPassword(clientDTO.password);
+        user.updatedAt = new Date;
+
+        return user;
+    }
+
+    async updateClientAdressConstructor(adress: ClientAdress, adressDTO: ClientAdress): Promise<ClientAdress>{
+        adress.street = adressDTO.street;
+        adress.number = adressDTO.number;
+        adress.block = adressDTO.block;
+        adress.city = adressDTO.city;
+        adress.state = adressDTO.state;
+        adress.updatedAt = new Date;
+
+        return adress;
+    }
 }
 
 export default ClassConstructorServiceHelper;
