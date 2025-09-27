@@ -19,8 +19,6 @@ class UserService{
 
     async addUser(clientDTO: ClientDTO): Promise<User>{
         const createdUser: User = await this.classConstructor.userConstructor({id: '', userName: clientDTO.firstName + ' ' + clientDTO.lastName, email: clientDTO.email, password: clientDTO.password, permissionList: '' as string, createdAt: null, updatedAt: null});
-
-        console.log(createdUser);
         return createdUser;
     }
 
