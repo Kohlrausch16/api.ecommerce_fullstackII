@@ -7,7 +7,7 @@ export type Client = {
     email: string;
     password: string;
     activeStatus: boolean;
-    adress: string; 
+    adressId: string; 
     cartId: string;
     userId: string;
     createdAt: Date | null;

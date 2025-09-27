@@ -18,6 +18,7 @@ class ClientAdressRepository{
     }
 
     async addAdress(adress: ClientAdress): Promise<ClientAdress>{
+
         await this.db.exec('INSERT INTO client_adress (id, rua, numero, bairro, cidade, uf, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [adress.id, adress.street, adress.number, adress.block, adress.city, adress.state, adress.createdAt, adress.updatedAt]);
 
         return await this.getAdressById(adress.id);

@@ -18,7 +18,10 @@ class CartService{
     }
 
     async addCart(clientDTO: ClientDTO): Promise<Cart>{
-       const createdCart: Cart = await this.classConstructor.cartConstructor({id: '', totalOrder: 0, activeStatus: true, cartItems: [], createdAt: null, updatedAt: null});
+        const createdCart: Cart = await this.classConstructor.cartConstructor({id: '', totalOrder: 0, activeStatus: true, cartItems: [], createdAt: null, updatedAt: null});
+
+        await this.cartRepository.addCart(createdCart);
+
         return createdCart;
     }
 }

@@ -6,14 +6,18 @@ class UserRepository{
     private db = require('../Database/dbConfig');
 
     async getUsers(): Promise<User[]>{
+        console.log('Repository');
         return await this.db.exec('SELECT * FROM user');
     }
 
     async getUserById(id: string): Promise<User>{
+
         const foundUser = await this.db.exec('SELECT * FROM user WHERE id = ?', [id]);        
         
+        console.log(foundUser);
+
         if(foundUser.length < 1)
-            throw new Error(`Usuário ${id} não encontrado!`);
+            throw new Error(`User ${id} not found!`);
 
         return foundUser[0];
     }

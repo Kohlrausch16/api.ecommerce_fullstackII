@@ -47,7 +47,7 @@ class ClassConstructorServiceHelper{
             email: clientDTO.email,
             password: '***************',
             activeStatus: clientDTO.activeStatus,
-            adress: adressData.id, 
+            adressId: adressData.id, 
             cartId: cartData.id,
             userId: userData.id,
             createdAt: new Date,
@@ -55,6 +55,26 @@ class ClassConstructorServiceHelper{
         };
         
         return clientData;
+    }
+
+    async clientDTOConstructor(client: Client, adress: ClientAdress, cart: Cart, user: User): Promise<ClientDTO>{
+        const clientDTO: ClientDTO = {
+            id: client.id,
+            firstName: client.firstName,
+            lastName: client.lastName,
+            cpf: client.cpf,
+            phoneNumber: client.phoneNumber,
+            email: client.email,
+            password: client.password,
+            activeStatus: client.activeStatus,
+            user: user,
+            adress: adress,
+            cart: cart,
+            createdAt: client.createdAt as Date,
+            updatedAt: client.updatedAt as Date
+        }
+
+        return clientDTO;
     }
 }
 
