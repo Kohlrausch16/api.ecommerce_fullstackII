@@ -17,10 +17,10 @@ class ClientService{
     private clientAdressService = new ClientAdressService;
     private clientRepository = new ClientRepository;
 
-    async getClients(): Promise<Client[]>{
-        /*const foundClients: Client[] = */ return await this.clientRepository.getClients();
-        /*const clientsDTO: ClientDTO[] = await Promise.all(foundClients.map(item => this.getClientById(item.id)));
-        return clientsDTO;*/
+    async getClients(): Promise<ClientDTO[]>{
+        const foundClients: Client[] = await this.clientRepository.getClients();
+        const clientsDTO: ClientDTO[] = await Promise.all(foundClients.map(item => this.getClientById(item.id)));
+        return clientsDTO;
     }
 
     async getClientById(id: string): Promise<ClientDTO>{
@@ -28,6 +28,7 @@ class ClientService{
         const foundClientAdress: ClientAdress = await this.clientAdressService.getAdressById(foundClient.adressId);
         const foundUser: User = await this.userService.getUserById(foundClient.userId);
         const foundCart: Cart = await this.cartService.getCartById(foundClient.cartId);
+
         return await this.classConstructor.clientDTOConstructor(foundClient, foundClientAdress, foundCart, foundUser);
     }
 
@@ -40,6 +41,16 @@ class ClientService{
         await this.clientRepository.addClient(createdClient);
 
         return await this.getClientById(createdClient.id);    
+    }
+
+    async deleteClient(id: string): Promise<string>{
+        const foundClient: ClientDTO = await this.getClientById(id);
+
+        await this.userService.deleteUser(foundClient.user.id);
+        await this.cartService.deleteCart(foundClient.cart.id);
+        await this.clientAdressService.deleteAdress(foundClient.adress.id);
+
+        return await this.clientRepository.deleteClient(foundClient.id);
     }
 
 }

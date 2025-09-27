@@ -31,6 +31,14 @@ class ClientController{
         }
     }
 
+    async deleteClient(req: Request, res: Response){
+        try{
+          res.json(await clientService.deleteClient(req.params.id)).status(200);
+        } catch (err: any){
+            res.json(err.message).status(404);
+        }
+    }
+
 }
 
 export default ClientController;

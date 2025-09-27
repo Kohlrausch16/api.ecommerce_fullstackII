@@ -23,6 +23,12 @@ class CartRepository{
         return this.getCartById(cartData.id);
     }
 
+    async deleteCart(id: string): Promise<string>{
+        await this.getCartById(id);
+        await this.db.exec('DELETE FROM cart WHERE id = ?', [id]);
+        return `Cart ${id} deleted succressfully!`;
+    }
+
 }
 
 export default CartRepository;

@@ -1,6 +1,4 @@
-import { Product } from "../../Entities/Product";
 import bcrypt from 'bcrypt';
-import { Request, response } from "express";
 import { Client } from "../../Entities/Client";
 import { User } from "../../Entities/User";
 class ServiceHelper{

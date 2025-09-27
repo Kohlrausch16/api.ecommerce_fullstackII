@@ -28,10 +28,10 @@ class UserRepository{
         await this.db.exec('UPDATE user SET userName = ?, email = ?, password = ?, permissionList = ?, updatedAt = ?', [user.userName, user.email, user.password, user.permissionList as string, user.updatedAt]);
     }
 
-    async deleteuser(id: string): Promise<string>{
+    async deleteUser(id: string): Promise<string>{
         await this.getUserById(id);
         await this.db.exec('DELETE FROM user WHERE id = ?', [id]);
-        return `Usuário ${id} deletado com sucesso!`;
+        return `User ${id} deleted succressfully!`;
     }
 
 }

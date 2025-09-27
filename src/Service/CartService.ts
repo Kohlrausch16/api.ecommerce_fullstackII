@@ -22,6 +22,11 @@ class CartService{
         await this.cartRepository.addCart(createdCart);
         return createdCart;
     }
+
+    async deleteCart(id: string): Promise<string>{
+        return await this.cartRepository.deleteCart(id);
+    }
+
 }
 
 export default CartService;

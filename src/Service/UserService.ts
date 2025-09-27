@@ -12,12 +12,18 @@ class UserService{
     private serviceHelper = new ServiceHelper;
     
     async getUsers(): Promise<User[]>{
-        return await this.userRepository.getUsers();
+        let foundUsers: User[] = await this.userRepository.getUsers();
+    
+        foundUsers.map((item: User) => {
+            item.permissionList = this.serviceHelper.toArray(item.permissionList as string);
+        });
+
+        return foundUsers;
     }
 
     async getUserById(id: string): Promise<User>{
         const foundUser = await this.userRepository.getUserById(id);
-        foundUser.permissionList = await this.serviceHelper.toArray(foundUser.permissionList as string);
+        foundUser.permissionList = this.serviceHelper.toArray(foundUser.permissionList as string);
         return foundUser;
     }
 
@@ -28,6 +34,9 @@ class UserService{
         return createdUser;
     }
 
+    async deleteUser(id: string): Promise<string>{
+        return await this.userRepository.deleteUser(id);
+    }
 }
 
 export default UserService;

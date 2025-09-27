@@ -41,7 +41,11 @@ class ClientRepository{
         return await this.getClientById(clientData.id);
     }    
 
-    
+    async deleteClient(id: string): Promise<string>{
+        await this.getClientById(id);
+        await this.db.exec('DELETE FROM client WHERE id = ?', [id]);
+        return `Client ${id} deleted succressfully!`;
+    }
 
 }
 
