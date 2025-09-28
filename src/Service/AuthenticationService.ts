@@ -35,7 +35,6 @@ class AuthenticationService{
     }
 
     async checkPermissions(token: string, requiredPermission: string): Promise<boolean>{
-
         const tokenPayload: User = await this.authHelper.verifyJWT(token);
 
         if(!tokenPayload.permissionList.includes(requiredPermission)){

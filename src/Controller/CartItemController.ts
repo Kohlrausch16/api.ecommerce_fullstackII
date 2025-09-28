@@ -21,6 +21,14 @@ class CartItemController{
         }
     }
 
+    async updateCartItem(req: Request, res: Response){
+        try{
+            res.json(await cartItemService.updateCartItemProductQtd(req.params.id, req.query.qtd as string)).status(200);
+        } catch (err: any){
+            res.json(err.message).status(404);
+        }
+    }
+
     async deleteCartItem(req: Request, res: Response){
         try{
             res.json(await cartItemService.deleteCartitem(req.params.id)).status(200);
@@ -28,8 +36,6 @@ class CartItemController{
             res.json(err.message).status(404);
         }
     }
-
-
 }
 
 export default CartItemController;

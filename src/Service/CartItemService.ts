@@ -32,6 +32,13 @@ class CartItemService{
         return await this.getCartItemById(cartItem.id);
     }
 
+    async updateCartItemProductQtd(id: string, newQtd: string):Promise<CartItem>{
+        const foundCartItem: CartItem = await this.cartItemRepository.getCartItemById(id);
+        const foundProduct: Product = await this.productService.getProductById(foundCartItem.productId);
+
+        return await this.cartItemRepository.updateCartItemProductQtd(id, newQtd, (parseInt(newQtd) * foundProduct.price));
+    }
+
     async deleteCartitem(id: string): Promise<string>{
         return await this.cartItemRepository.deleteCartItem(id);
     }

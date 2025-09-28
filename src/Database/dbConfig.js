@@ -89,6 +89,9 @@ db.serialize(() => {
             FOREIGN KEY (userId) REFERENCES user(id)
         )
     `);
+
+/*
+    db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['566605cd-46e4-4801-8a0b-55ea7c05d61a', 'admin', 'admin@gmail.com', '$2a$10$Fg7EIf030xnen3KLOem0NO30644jiLvF0l2GGID/T8xrAJ5xv7eTy','get-users,get-user-by-id,get-clients,get-client-by-id,add-client,put-client,delete-client,get-cart-by-id,get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]); */
 });
 
 function exec(query, params = []) {

@@ -28,6 +28,12 @@ class CartItemRepository{
         return await this.getCartItemById(cartItem.id);
     }
 
+    async updateCartItemProductQtd(id: string, newQtd: string, newPrice: number): Promise<CartItem>{
+        await this.db.exec('UPDATE cart_item SET productQtd = ?, totalAmount = ? WHERE id = ?', [newQtd, newPrice, id]);
+
+        return await this.getCartItemById(id);
+    }
+
     async deleteCartItem(id: string): Promise<string>{
         await this.db.exec('DELETE FROM cart_item WHERE id = ?', [id]);
         return `Cart Item ${id} delted successfully!`;
