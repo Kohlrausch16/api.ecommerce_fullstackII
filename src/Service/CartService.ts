@@ -1,7 +1,7 @@
 import { Cart } from "../Entities/Cart";
 import { ClientDTO } from "../Entities/DTO/ClientDTO";
+import CartItemRepository from "../Repository/CartItemRepository";
 import CartRepository from "../Repository/CartRepository";
-import CartItemService from "./CartItemService";
 import ClassConstructorServiceHelper from "./ServiceHelper/ClassConstructorServiceHelper";
 
 
@@ -9,7 +9,7 @@ class CartService{
 
     private cartRepository = new CartRepository;
     private classConstructor = new ClassConstructorServiceHelper;
-    private cartItemService = new CartItemService;
+    private cartItemRepository = new CartItemRepository;
 
     async getCarts(): Promise<Cart[]>{
         return await this.cartRepository.getCarts();
@@ -17,7 +17,12 @@ class CartService{
 
     async getCartById(id: string): Promise<Cart>{
         const foundCart = await this.cartRepository.getCartById(id);
-        foundCart.cartItems = await this.cartItemService.getCartItemsByCartId(foundCart.id);
+        foundCart.cartItems = await this.cartItemRepository.getCartItemsByCartId(foundCart.id);
+
+        for(let i = 0; i < foundCart.cartItems.length; i++){
+            foundCart.totalOrder = foundCart.totalOrder + foundCart.cartItems[i].totalAmount;
+        }
+
         return foundCart;
     }
 

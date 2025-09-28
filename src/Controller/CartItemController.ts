@@ -21,6 +21,15 @@ class CartItemController{
         }
     }
 
+    async deleteCartItem(req: Request, res: Response){
+        try{
+            res.json(await cartItemService.deleteCartitem(req.params.id)).status(200);
+        } catch (err: any){
+            res.json(err.message).status(404);
+        }
+    }
+
+
 }
 
 export default CartItemController;

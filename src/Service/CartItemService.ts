@@ -32,6 +32,9 @@ class CartItemService{
         return await this.getCartItemById(cartItem.id);
     }
 
+    async deleteCartitem(id: string): Promise<string>{
+        return await this.cartItemRepository.deleteCartItem(id);
+    }
 }
 
 export default CartItemService;
