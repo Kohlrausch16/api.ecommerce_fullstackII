@@ -1,7 +1,6 @@
-import { UUIDTypes } from "../../node_modules/uuid/dist/cjs/types";
 
 export type Product = {
-    id: UUIDTypes;
+    id: string;
     name: string;
     price: number;
     height: number;

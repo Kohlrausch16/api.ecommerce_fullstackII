@@ -5,6 +5,9 @@ import ServiceHelper from "./ServiceHelper";
 import { Cart } from "../../Entities/Cart";
 import { ClientDTO } from "../../Entities/DTO/ClientDTO";
 import { Client } from "../../Entities/Client";
+import { CartItem } from "../../Entities/CartItem";
+import { Product } from "../../Entities/Product";
+import { CartItemDTO } from "../../Entities/DTO/CartItemDTO";
 
 class ClassConstructorServiceHelper{
 
@@ -75,6 +78,30 @@ class ClassConstructorServiceHelper{
         }
 
         return clientDTO;
+    }
+
+    async cartItemConstructor(cartItem: CartItem, product: Product): Promise<CartItem>{
+        cartItem.id = uuidv4();
+        cartItem.totalAmount = product.price * cartItem.productQtd;
+        cartItem.createdAt = new Date;
+        cartItem.updatedAt = new Date;
+
+        return cartItem;
+    }
+
+     async cartItemDTOConstructor(cartItem: CartItem, product: Product): Promise<CartItemDTO>{
+        const cartItemDTO: CartItemDTO = {
+            id: cartItem.id,
+            productQtd: cartItem.productQtd,
+            totalAmount: cartItem.productQtd* product.price, 
+            activetatus: cartItem.activetatus, 
+            productId: product, 
+            cartId: cartItem.cartId,
+            createdAt: cartItem.createdAt,
+            updatedAt: cartItem.updatedAt
+        }
+
+        return cartItemDTO;
     }
 
     async updateClientConstructor(client: Client, clientDTO: ClientDTO): Promise<Client>{
