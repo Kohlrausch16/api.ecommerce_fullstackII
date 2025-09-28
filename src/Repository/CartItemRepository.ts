@@ -1,6 +1,5 @@
 import { CartItem } from "../Entities/CartItem";
 
-
 class CartItemRepository{
 
     private db = require('../Database/dbConfig');

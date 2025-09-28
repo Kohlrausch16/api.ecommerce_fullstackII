@@ -13,14 +13,8 @@ class CartItemService{
     private cartService = new CartService;
     private classConstructor = new ClassConstructorServiceHelper;
 
-    async getCartItemsByCartId(id: string): Promise<CartItemDTO[]>{
-        const foundCartItems: CartItem[] = await this.cartItemRepository.getCartItemsByCartId(id);
-
-        const cartItemsDTO: CartItemDTO[] = foundCartItems.map(async (item: CartItem) => {
-            return await this.getCartItemById(item.id);
-        });
-
-        return cartItemsDTO;
+    async getCartItemsByCartId(id: string): Promise<CartItem[]>{
+        return await this.cartItemRepository.getCartItemsByCartId(id);
     }
 
     async getCartItemById(id: string): Promise<CartItemDTO>{
