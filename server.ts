@@ -4,7 +4,7 @@ import clientRouter from "./src/routes/ClientRoutes";
 import cartItemRouter from "./src/routes/CartItemRoutes";
 import cartRouter from "./src/routes/CartRoutes";
 import authRoutes from "./src/routes/AuthenticationRoutes";
-import productRouter from "./src/routes/productRoutes";
+import productRouter from "./src/routes/ProductRoutes";
 import userRouter from "./src/routes/UserRoutes";
 import cors from 'cors'
 
@@ -20,4 +20,7 @@ server.use(express.urlencoded({extended: true}));
 server.use(express.json());
 
 server.use(productRouter, userRouter, clientRouter, cartItemRouter, cartRouter, authRoutes);
-server.listen(port);
+
+server.listen(port, () => {
+    console.log(` Server is running on http://localhost:${port}`);
+});
