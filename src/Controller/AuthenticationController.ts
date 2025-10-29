@@ -23,22 +23,15 @@ class AuthenticationController{
             
             res.set('token', token);
             res.set('refresh_token', refreshToken);
-            
-            res.status(200).json({
-                message: "Login successful",
-                token: token,
-                refreshToken: refreshToken
-            });
 
         } catch(err: any) {
-            res.status(403).json({ error: err.message });
+            res.json(err.message).status(403);
         }
     }
 
     async logout(req: Request, res: Response){
-        res.set('token', '');
-        res.set('refresh_token', '');
-        res.status(200).json({ message: "Logout successful" });
+        res.set('', '');
+        res.set('', '');
     }
 
 }

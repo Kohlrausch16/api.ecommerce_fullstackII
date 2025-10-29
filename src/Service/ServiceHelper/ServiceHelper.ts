@@ -8,7 +8,7 @@ class ServiceHelper{
     }
 
     toArray(value: string): string[]{
-        return value.split(',').map(permission => permission.trim());
+        return value.split(',');
     }
 
     hashPassword(password: string): Promise<string>{
