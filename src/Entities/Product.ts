@@ -1,4 +1,3 @@
-
 export type Product = {
     id: string;
     name: string;
@@ -9,7 +8,9 @@ export type Product = {
     color: string[] | string;
     description: string;
     year: string;
+    stockQty: number;
     status: boolean | number;
+    supplierId: string;
     createdAt: Date;
     updatedAt: Date;
 }

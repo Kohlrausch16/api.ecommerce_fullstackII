@@ -70,13 +70,27 @@ db.serialize(() => {
     `);
 
     db.run(`
+        CREATE TABLE IF NOT EXISTS supplier (
+            id VARCHAR(255) PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            phone VARCHAR(255) NOT NULL,
+            cnpj VARCHAR(255) NOT NULL UNIQUE,
+            adressId VARCHAR(255) NOT NULL,
+            createdAt TEXT NOT NULL,
+            updatedAt TEXT NOT NULL,
+            FOREIGN KEY (adressId) REFERENCES client_adress(id)
+        )
+    `);
+
+    db.run(`
         CREATE TABLE IF NOT EXISTS client (
             id VARCHAR(255) PRIMARY KEY,
             firstName TEXT NOT NULL,
             lastName TEXT NOT NULL,
             cpf TEXT,
             phoneNumber TEXT,
-            email TEXT,
+            email TEXT
             password TEXT,
             activeStatus INTEGER DEFAULT 1,
             adressId VARCHAR(255),
@@ -90,8 +104,8 @@ db.serialize(() => {
         )
     `);
 
-/*
-    db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['566605cd-46e4-4801-8a0b-55ea7c05d61a', 'admin', 'admin@gmail.com', '$2a$10$Fg7EIf030xnen3KLOem0NO30644jiLvF0l2GGID/T8xrAJ5xv7eTy','get-users,get-user-by-id,get-clients,get-client-by-id,add-client,put-client,delete-client,get-cart-by-id,get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]); */
+            // Senha: admin
+    db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['01ac1ba7-312c-4c43-af5a-4f57876898fa', 'admin', 'admin@gmail.com', '$2a$10$3HtqHeOPfxJW8FflZ4Xr..CXHca8cF.uEB9iUoQq4Psk1DTQIaVJ.', 'get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-cart-by-id,get-clients,get-client-by-id,put-client,delete-client,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]);
 });
 
 function exec(query, params = []) {

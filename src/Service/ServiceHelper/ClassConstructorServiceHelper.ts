@@ -12,7 +12,7 @@ import { CartItemDTO } from "../../Entities/DTO/CartItemDTO";
 class ClassConstructorServiceHelper{
 
     private authHelper = new ServiceHelper;
-    private clientUserPermissions = " get-client-by-id, put-client, delete-client, get-cart-by-id, get-cart-item-by-id, add-cart-item, put-cart-item, delete-cart-item, get-products, get-product-by-id";
+    private clientUserPermissions = "get-client-by-id,put-client,delete-client,get-cart-by-id,get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-products,get-product-by-id";
 
     async userConstructor(userData: User): Promise<User>{
         userData.id = uuidv4();

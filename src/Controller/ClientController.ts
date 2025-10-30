@@ -24,7 +24,6 @@ class ClientController{
 
     async addClients(req: Request, res: Response){
         try{
-            // validar estrutura do DTO!!;
             res.json(await clientService.addClient(req.body as ClientDTO)).status(201);    
         } catch (err: any){
             res.json(err.message).status(400);
@@ -33,7 +32,6 @@ class ClientController{
 
     async updateClient(req: Request, res: Response){
         try{
-            // validar estrutura do DTO!!;
             res.json(await clientService.updateClient(req.params.id as string, req.body as ClientDTO)).status(201);    
         } catch (err: any){
             res.json(err.message).status(400);
