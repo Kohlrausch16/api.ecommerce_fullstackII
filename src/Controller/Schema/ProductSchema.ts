@@ -13,7 +13,3 @@ export const validateProduct = object().shape({
     supplierId: string().required('Supplier is a equired field!'),
     status: boolean().default(true),
 });
-
-/* 
-    userId: UUIDTypes;
-*/

@@ -1,7 +1,8 @@
+- Buscar o endereço no cadastro de fornecedor - continuar (tem bug);
+- Adaptar o addSupplier - para comportar o SupplierDTO;
 
-- Implementar ProductDTO nos métodos de Get (supplierId);
-- Implementar supplier id;
-
+- Implementar schema supplier;
+- Implementar schema order;
 
 - CRUD Order(s);
 

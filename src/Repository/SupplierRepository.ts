@@ -26,10 +26,21 @@ class SupplierRepository{
     }
 
     async addSupplier(supplier: Supplier): Promise<Supplier>{
-
         await this.db.exec('INSERT INTO supplier (id, name, email, phone, cnpj, adressId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [supplier.id, supplier.name, supplier.email, supplier.phone, supplier.cnpj, supplier.adressId, supplier.createdAt, supplier.updatedAt]);
 
         return this.getSupplierById(supplier.id);
+    }
+
+    async updateSupplier(id: string, supplier: Supplier): Promise<Supplier>{
+
+
+        return await this.getSupplierById(id);
+    }
+
+    async deleteSupplier(id: string): Promise<string>{
+        await this.db.exec('DELETE FROM supplier WHERE id = ?', [id]);
+        
+        return `Supplier ${id} deleted successfully`
     }
 
 

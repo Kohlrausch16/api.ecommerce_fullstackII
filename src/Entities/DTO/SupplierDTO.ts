@@ -1,10 +1,12 @@
 import { ClientAdress } from "../ClientAdress";
 
-export type Supplier = {
+export type SupplierDTO = {
     id: string;
     name: string;
     email: string;
     phone: string;
     cnpj: string;
-    adressId: ClientAdress;
+    adress: ClientAdress;
+    createdAt: Date;
+    updatedAt: Date;
 }
