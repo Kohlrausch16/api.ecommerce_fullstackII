@@ -1,0 +1,16 @@
+
+- Implementar ProductDTO nos métodos de Get (supplierId);
+- Implementar supplier id;
+
+
+- CRUD Order(s);
+
+- Métodos update e delete - Supplier;
+- Implementar rotas com filtros:
+    - Vendas por mês;
+    - Produto mais vendido;
+    - Produto com menor estoque (listagem de estoque);
+
+
+
+- DEPOIS DE PRONTO: Proteger as rotas;
