@@ -92,7 +92,7 @@ db.serialize(() => {
             lastName TEXT NOT NULL,
             cpf TEXT,
             phoneNumber TEXT,
-            email TEXT
+            email TEXT,
             password TEXT,
             activeStatus INTEGER DEFAULT 1,
             adressId VARCHAR(255),

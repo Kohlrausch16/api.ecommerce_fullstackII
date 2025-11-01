@@ -32,7 +32,7 @@ class ProductRepository{
     }
 
     async addProduct(product: Product): Promise<string>{
-        await this.db.exec('INSERT INTO product (id, name, price, height, width, length, color, description, year, status, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [product.id, product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.createdAt, product.updatedAt]);
+        await this.db.exec('INSERT INTO product (id, name, price, height, width, length, color, description, year, stockQtd, supplierId, status, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [product.id, product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.stockQtd, product.supplierId, product.status, product.createdAt, product.updatedAt]);
 
         return repositoryURLBuilderHelper(product.id);
     }
@@ -40,7 +40,7 @@ class ProductRepository{
     async updateProduct(id: string, product: Product): Promise<string>{
         await this.getProductById(id);
 
-        await this.db.exec('UPDATE product SET name = ?, price = ?, height = ?, width =?, length = ?, color = ?, description = ?, year = ?, status = ?, updatedAt = ? WHERE id = ?', [product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.updatedAt, id]); 
+        await this.db.exec('UPDATE product SET name = ?, price = ?, height = ?, width =?, length = ?, color = ?, description = ?, year = ?, stockQtd = ?, supplierId = ?, status = ?, updatedAt = ? WHERE id = ?', [product.name, product.price, product.height, product.width, product.length, product.color, product.description, product.year, product.status, product.stockQtd, product.supplierId, product.updatedAt, id]); 
 
         return repositoryURLBuilderHelper(id);
     }

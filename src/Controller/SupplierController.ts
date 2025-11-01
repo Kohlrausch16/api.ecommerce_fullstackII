@@ -21,6 +21,14 @@ class SupplierController{
         }
     }
 
+    async addSupplier(req: Request, res: Response){
+        try{
+            res.json(await supplierService.addSupplier(req.body)).status(201);
+        } catch(err: any){
+            res.status(404).json(err.message);
+        }
+    }
+
 }
 
 export default SupplierController;

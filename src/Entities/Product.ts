@@ -8,7 +8,7 @@ export type Product = {
     color: string[] | string;
     description: string;
     year: string;
-    stockQty: number;
+    stockQtd: number;
     status: boolean | number;
     supplierId: string;
     createdAt: Date;

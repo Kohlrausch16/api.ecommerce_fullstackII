@@ -36,7 +36,7 @@ class ClientRepository{
         await this.getClientByCPF(clientData.cpf);
         await this.getClientByEmail(clientData.email);
 
-        await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, password, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [clientData.id, clientData.firstName, clientData.lastName, clientData.cpf, clientData.phoneNumber, clientData.email, clientData.password ,clientData.activeStatus, clientData.adressId, clientData.cartId, clientData.userId, clientData.createdAt, clientData.updatedAt]);
+        await this.db.exec('INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, password, activeStatus, adressId, cartId, userId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [clientData.id, clientData.firstName, clientData.lastName, clientData.cpf, clientData.phoneNumber, clientData.email, clientData.password, clientData.activeStatus, clientData.adressId, clientData.cartId, clientData.userId, clientData.createdAt, clientData.updatedAt]);
 
         return await this.getClientById(clientData.id);
     }

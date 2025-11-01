@@ -104,6 +104,7 @@ class ClassConstructorServiceHelper{
         return cartItemDTO;
     }
 
+    
     async updateClientConstructor(client: Client, clientDTO: ClientDTO): Promise<Client>{
         client.firstName = clientDTO.firstName;
         client.lastName = clientDTO.lastName;

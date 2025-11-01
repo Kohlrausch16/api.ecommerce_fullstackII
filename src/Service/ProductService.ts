@@ -2,11 +2,13 @@ import { Product } from "../Entities/Product";
 import { v4 as uuidv4 } from 'uuid';
 import ProductRepository from "../Repository/ProductRepository";
 import ServiceUpdateHelper from "./ServiceHelper/ServiceHelper";
+import SupplierService from "../Service/SupplierService";
 
 class ProductService{
 
     private productRepository = new ProductRepository;
     private serviceHelper = new ServiceUpdateHelper;
+    private supplierService = new SupplierService;
 
     async getProducts(): Promise<Product[]>{
         const products: Product[] = await this.productRepository.getProducts()
@@ -46,6 +48,8 @@ class ProductService{
     }
 
     async addProduct(product: Product): Promise<string>{
+        await this.supplierService.getSupplierById(product.supplierId);
+
         product.id = uuidv4();
         product.createdAt = new Date;
         product.updatedAt = new Date;

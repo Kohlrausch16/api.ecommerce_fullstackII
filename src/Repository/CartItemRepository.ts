@@ -6,10 +6,7 @@ class CartItemRepository{
 
     async getCartItemsByCartId(id: string): Promise<CartItem[]>{
         const foundCartItems: CartItem[] = await this.db.exec('SELECT * FROM cart_item WHERE cartId = ?', [id]);
-
-        if(foundCartItems.length < 1)
-            throw new Error(`No cart iems reated to cart ${id}`);
-
+        
         return foundCartItems;
     }
 

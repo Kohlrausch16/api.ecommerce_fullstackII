@@ -7,6 +7,7 @@ const supplierController = new SupplierController;
 
 supplierRouter.get('/fornecedor', supplierController.getSuppliers);
 supplierRouter.get('/fornecedor/:id', supplierController.getSupplierById);
+supplierRouter.post('/fornecedor', supplierController.addSupplier);
 
 export default supplierRouter;
 
