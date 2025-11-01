@@ -1,4 +1,3 @@
-import { Client } from "../Entities/Client";
 import { User } from "../Entities/User";
 
 class AuthenticationRepository{

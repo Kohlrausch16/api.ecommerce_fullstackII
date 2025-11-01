@@ -9,6 +9,7 @@ export const validateProduct = object().shape({
     color: array().nullable(),
     description: string().required('Description is a required field!'),
     year: string().required('Year is a required field!'),
+    supplierId: string().required('Supplier is a equired field!'),
     status: boolean().default(true),
 });
 

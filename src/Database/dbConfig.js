@@ -38,6 +38,8 @@ db.serialize(() => {
             color TEXT,
             description TEXT,
             year TEXT,
+            stockQtd REAL,
+            supplierId VARCHAR(255),
             status INTEGER DEFAULT 1,
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL
@@ -104,8 +106,11 @@ db.serialize(() => {
         )
     `);
 
+    /*
             // Senha: admin
-    db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['01ac1ba7-312c-4c43-af5a-4f57876898fa', 'admin', 'admin@gmail.com', '$2a$10$3HtqHeOPfxJW8FflZ4Xr..CXHca8cF.uEB9iUoQq4Psk1DTQIaVJ.', 'get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-cart-by-id,get-clients,get-client-by-id,put-client,delete-client,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]);
+    db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['01ac1ba7-312c-4c43-af5a-4f57876898fa', 'admin', 'admin@gmail.com', '$2a$10$3HtqHeOPfxJW8FflZ4Xr..CXHca8cF.uEB9iUoQq4Psk1DTQIaVJ.', 'get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-cart-by-id,get-clients,get-client-by-id,put-client,delete-client,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]
+    );
+*/
 });
 
 function exec(query, params = []) {

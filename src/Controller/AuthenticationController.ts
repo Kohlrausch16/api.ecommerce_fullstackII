@@ -16,7 +16,7 @@ class AuthenticationController{
             const {email, password} = req.body;
 
             if(!email || !password) 
-                throw new Error('Email or password incorrect/not informed! - AuthController');
+                throw new Error('Email or password incorrect/not informed!');
 
             await validateCredentials.validate({email, password}, {stripUnknown: true});
             const {token, refreshToken} = await authService.checkCredentials({email, password} as AuthCredentials);
