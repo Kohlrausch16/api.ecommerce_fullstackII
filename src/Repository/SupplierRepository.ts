@@ -5,8 +5,8 @@ class SupplierRepository{
 
     private db = require('../Database/dbConfig');
 
-    async getSuppliers(): Promise<void/*Supplier[]*/>{
-
+    async getSuppliers(): Promise<Supplier[]>{
+        return await this.db.exec('SELECT * FROM supplier');
     }
 
     async getSupplierById(id: string): Promise<Supplier>{
@@ -19,8 +19,6 @@ class SupplierRepository{
     }
 
     async addSupplier(supplier: Supplier): Promise<Supplier>{
-
-        
         return this.getSupplierById(supplier.id);
     }
 

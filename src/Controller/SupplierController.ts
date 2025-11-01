@@ -5,9 +5,17 @@ const supplierService = new SupplierService;
 
 class SupplierController{
 
+    async getSuppliers(req: Request, res: Response){
+        try{
+            res.json(await supplierService.getSuppliers()).status(200);
+        } catch(err: any){
+            res.status(204).json(err.message);
+        }
+    }
+
     async getSupplierById(req: Request, res: Response){
         try{
-            await supplierService.getSupplierById(req.params.id);
+            res.json(await supplierService.getSupplierById(req.params.id as string)).status(200);
         } catch(err: any){
             res.status(404).json(err.message);
         }
