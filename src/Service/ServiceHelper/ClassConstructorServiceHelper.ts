@@ -78,8 +78,6 @@ class ClassConstructorServiceHelper{
             createdAt: client.createdAt as Date,
             updatedAt: client.updatedAt as Date
         }
-
-
         return clientDTO;
     }
 
@@ -141,6 +139,17 @@ class ClassConstructorServiceHelper{
         user.updatedAt = new Date;
 
         return user;
+    }
+
+    updateSupplierConstructor(updateSupplier: Supplier, supplier: Supplier): Supplier{
+        supplier.name = updateSupplier.name;
+        supplier.email = updateSupplier.email;
+        supplier.phone = updateSupplier.phone;
+        supplier.cnpj = updateSupplier.cnpj;
+        supplier.adressId = updateSupplier.adressId
+        supplier.updatedAt = new Date;
+
+        return supplier;
     }
 
     async updateClientAdressConstructor(adress: ClientAdress, adressDTO: ClientAdress): Promise<ClientAdress>{

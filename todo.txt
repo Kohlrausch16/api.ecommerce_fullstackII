@@ -1,17 +1,12 @@
-- Buscar o endereço no cadastro de fornecedor - continuar (tem bug);
-- Adaptar o addSupplier - para comportar o SupplierDTO;
 
-- Implementar schema supplier;
 - Implementar schema order;
-
 - CRUD Order(s);
 
-- Métodos update e delete - Supplier;
+
 - Implementar rotas com filtros:
     - Vendas por mês;
     - Produto mais vendido;
     - Produto com menor estoque (listagem de estoque);
 
 
-
-- DEPOIS DE PRONTO: Proteger as rotas;
+- DEPOIS DE PRONTO: Proteger as rotas (alterar as permissões de admin no banco (criar novo registro!!!!));

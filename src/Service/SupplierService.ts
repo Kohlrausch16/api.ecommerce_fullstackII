@@ -13,21 +13,24 @@ class SupplierService{
     private classConstructor = new ClassConstructorServiceHelper;
 
     async getSuppliers(): Promise<SupplierDTO[]>{
-       const supplierList: Supplier[] = await this.supplierRepository.getSuppliers();
-       const supplierDTOList: SupplierDTO[] = [];
+        const supplierList: Supplier[] = await this.supplierRepository.getSuppliers();
 
-        const index =  await supplierList.map(async (item: Supplier) => {
+        let supplierDTOList: SupplierDTO[] = await Promise.all(supplierList.map(async item => {
             const suplierAdress: ClientAdress = await this.clientAdressRepository.getAdressById(item.adressId);
             const supplierDTO: SupplierDTO = await this.classConstructor.supplierDTOConstructor(item as Supplier, suplierAdress);
 
-            supplierDTOList.push(supplierDTO);
-        });
+            return supplierDTO;
+        }));
 
         return supplierDTOList;
     }
 
-    async getSupplierById(id: string): Promise<Supplier>{
-       return await this.supplierRepository.getSupplierById(id);
+    async getSupplierById(id: string): Promise<SupplierDTO>{
+        const foundSuplier: Supplier = await this.supplierRepository.getSupplierById(id);
+        const suplierAdress: ClientAdress = await this.clientAdressRepository.getAdressById(foundSuplier.adressId);
+        const supplierDTO: SupplierDTO = await this.classConstructor.supplierDTOConstructor(foundSuplier as Supplier, suplierAdress);    
+
+       return supplierDTO;
     }
 
     async addSupplier(supplier: Supplier): Promise<Supplier>{
@@ -42,14 +45,15 @@ class SupplierService{
     }
 
     async updateSupplier(id: string, supplier: Supplier): Promise<Supplier>{
-        console.log(`Id: ${id}, Supplier: ${supplier}`);
+        const foundSupplier: Supplier = await this.supplierRepository.getSupplierById(id);
+        const updatedSupplier = this.classConstructor.updateSupplierConstructor(supplier, foundSupplier);
 
-        await this.getSupplierById(id);
-        return await this.supplierRepository.updateSupplier(id, supplier);
+        console.log(updatedSupplier);
+
+        return await this.supplierRepository.updateSupplier(id, updatedSupplier);
     }
 
     async deleteSupplier(id: string): Promise<string>{
-        console.log(id);
         await this.getSupplierById(id);
         return await this.supplierRepository.deleteSupplier(id);
     }

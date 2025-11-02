@@ -32,8 +32,7 @@ class SupplierRepository{
     }
 
     async updateSupplier(id: string, supplier: Supplier): Promise<Supplier>{
-
-
+        await this.db.exec('UPDATE supplier SET name = ?, email = ?, phone = ?, cnpj = ?, adressId = ?, updatedAt = ? WHERE id = ?', [supplier.name, supplier.email, supplier.phone, supplier.cnpj, supplier.adressId, supplier.updatedAt, supplier.id]);
         return await this.getSupplierById(id);
     }
 
