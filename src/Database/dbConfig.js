@@ -47,6 +47,26 @@ db.serialize(() => {
     `);
 
     db.run(`
+        CREATE TABLE IF NOT EXISTS cart (
+            id VARCHAR(255) PRIMARY KEY,
+            totalOrder REAL NOT NULL,
+            activeStatus INTEGER DEFAULT 1,
+            createdAt TEXT NOT NULL,
+            updatedAt TEXT NOT NULL
+        )
+    `);
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS productOrder(
+            id VARCHAR(255) PRIMARY KEY,
+            totalOrder REAL NOT NULL,
+            totalItems REAL NOT NULL,
+            createdAt TEXT NOT NULL,
+            updatedAt TEXT NOT NULL
+        )
+    `);
+
+    db.run(`
         CREATE TABLE IF NOT EXISTS cart_item (
             id VARCHAR(255) PRIMARY KEY,
             productQtd INTEGER NOT NULL,
@@ -54,20 +74,12 @@ db.serialize(() => {
             activeStatus INTEGER DEFAULT 1,
             productId VARCHAR(255),
             cartId VARCHAR(255),
+            orderId VARCHAR(255),
             createdAt TEXT NOT NULL,
             updatedAt TEXT NOT NULL,
             FOREIGN KEY (productId) REFERENCES product(id),
-            FOREIGN KEY (cartId) REFERENCES cart(id)
-        )
-    `);
-
-    db.run(`
-        CREATE TABLE IF NOT EXISTS cart (
-            id VARCHAR(255) PRIMARY KEY,
-            totalOrder REAL NOT NULL,
-            activeStatus INTEGER DEFAULT 1,
-            createdAt TEXT NOT NULL,
-            updatedAt TEXT NOT NULL
+            FOREIGN KEY (cartId) REFERENCES cart(id),
+            FOREIGN KEY (orderId) REFERENCES productOrder(id)
         )
     `);
 
@@ -106,8 +118,8 @@ db.serialize(() => {
         )
     `);
 
-    /*
-            // Senha: admin
+  
+  /*  // Senha: admin
     db.run('INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)', ['01ac1ba7-312c-4c43-af5a-4f57876898fa', 'admin', 'admin@gmail.com', '$2a$10$3HtqHeOPfxJW8FflZ4Xr..CXHca8cF.uEB9iUoQq4Psk1DTQIaVJ.', 'get-cart-item-by-id,add-cart-item,put-cart-item,delete-cart-item,get-cart-by-id,get-clients,get-client-by-id,put-client,delete-client,get-products,get-product-by-id,add-product,put-product,patch-product,delete-product', new Date, new Date]
     );
 */

@@ -5,6 +5,7 @@ export type CartItem = {
     activetatus: boolean;
     productId: string;
     cartId: string;
+    orderId: string;
     createdAt: Date;
     updatedAt: Date;
 }
