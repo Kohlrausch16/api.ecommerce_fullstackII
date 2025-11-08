@@ -2,6 +2,7 @@
 - Implementar schema order;
 - CRUD Order(s);
 
+- Método para decrementar produtos em estoque;
 
 - Implementar rotas com filtros:
     - Vendas por mês;

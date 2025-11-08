@@ -1,3 +1,4 @@
+import { Order } from "../Order";
 import { Product } from "../Product";
 
 export type CartItemDTO = {
@@ -7,6 +8,7 @@ export type CartItemDTO = {
     activetatus: boolean;
     productId: Product;
     cartId: string;
+    //orderId: Order;
     createdAt: Date;
     updatedAt: Date;
 }

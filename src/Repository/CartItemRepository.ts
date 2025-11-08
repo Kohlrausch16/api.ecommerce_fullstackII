@@ -5,9 +5,7 @@ class CartItemRepository{
     private db = require('../Database/dbConfig');
 
     async getCartItemsByCartId(id: string): Promise<CartItem[]>{
-        const foundCartItems: CartItem[] = await this.db.exec('SELECT * FROM cart_item WHERE cartId = ?', [id]);
-        
-        return foundCartItems;
+        return await this.db.exec('SELECT * FROM cart_item WHERE cartId = ?', [id]);
     }
 
     async getCartItemById(id: string): Promise<CartItem>{
@@ -19,8 +17,12 @@ class CartItemRepository{
         return foundCartItem[0];
     }
 
+    async setCartItemToOrder(orderId: string, cartItem: string){
+        await this.db.exec('UPDATE cart_item SET orderId = ? WHERE id = ?', [orderId, cartItem]);
+    }
+
     async addCartItem(cartItem: CartItem): Promise<CartItem>{
-        await this.db.exec('INSERT INTO cart_item (id, productQtd, totalAmount, activeStatus, productId, cartId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [cartItem.id, cartItem.productQtd, cartItem.totalAmount, cartItem.activetatus, cartItem.productId, cartItem.cartId, cartItem.createdAt, cartItem.updatedAt]);
+        await this.db.exec('INSERT INTO cart_item (id, productQtd, totalAmount, activeStatus, productId, cartId orderId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [cartItem.id, cartItem.productQtd, cartItem.totalAmount, cartItem.activetatus, cartItem.productId, cartItem.cartId, cartItem.orderId, cartItem.createdAt, cartItem.updatedAt]);
 
         return await this.getCartItemById(cartItem.id);
     }

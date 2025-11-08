@@ -32,6 +32,12 @@ class CartItemService{
         return await this.getCartItemById(cartItem.id);
     }
 
+    async setCartItemToOrder(orderId: string, cartItemId: string[]): Promise<void>{
+        cartItemId.map(async (cartItem: string) => {
+            await this.cartItemRepository.setCartItemToOrder(orderId, cartItem);
+        });
+    }
+
     async updateCartItemProductQtd(id: string, newQtd: string):Promise<CartItem>{
         const foundCartItem: CartItem = await this.cartItemRepository.getCartItemById(id);
         const foundProduct: Product = await this.productService.getProductById(foundCartItem.productId);

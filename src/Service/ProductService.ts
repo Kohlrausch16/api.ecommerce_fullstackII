@@ -28,6 +28,11 @@ class ProductService{
         return foundProduct;
     }
 
+    async getProductStock(): Promise<Product>{
+        console.log('Aquiiiii')
+        return await this.productRepository.getProductStock();
+    }
+
     async getProductByName(name: string): Promise<Product[]>{
         const products: Product[] = await this.productRepository.getProductByName(name);
 

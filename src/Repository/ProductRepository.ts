@@ -26,6 +26,14 @@ class ProductRepository{
         return foundProduct;
     }
 
+    async getProductStock(): Promise<Product>{
+        const foundProduct: Product[] = await this.db.exec('SELECT * FROM product ORDER BY stockQtd ASC');
+
+        console.log(foundProduct);
+
+        return this.getProductById(foundProduct[0].id);
+    }
+
     async getProductByPrice(minPrice: string, maxPrice: string): Promise<Product[]>{
 
         return await this.db.exec('SELECT * FROM product WHERE price >= ? AND price <= ?', [minPrice, maxPrice]);

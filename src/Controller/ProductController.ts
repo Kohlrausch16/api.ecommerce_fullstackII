@@ -32,6 +32,15 @@ class ProductController{
             res.json(err.message).status(404);
         }
     }
+
+    async getProductStock(req: Request, res: Response){
+        try{
+            console.log('Aqui')
+            res.json(await productService.getProductStock()).status(200);
+        } catch(err: any){
+            res.json(err.message).status(204);
+        }
+    }
     
     async addProduct(req: Request, res: Response){
         try{ 
