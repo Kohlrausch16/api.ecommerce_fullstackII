@@ -35,7 +35,6 @@ class ProductController{
 
     async getProductStock(req: Request, res: Response){
         try{
-            console.log('Aqui')
             res.json(await productService.getProductStock()).status(200);
         } catch(err: any){
             res.json(err.message).status(204);

@@ -29,8 +29,11 @@ class ProductService{
     }
 
     async getProductStock(): Promise<Product>{
-        console.log('Aquiiiii')
         return await this.productRepository.getProductStock();
+    }
+
+    async alterProductStock(productId: string, reduceQty: number): Promise<void>{
+        return await this.productRepository.alterProductStock(productId, reduceQty);
     }
 
     async getProductByName(name: string): Promise<Product[]>{

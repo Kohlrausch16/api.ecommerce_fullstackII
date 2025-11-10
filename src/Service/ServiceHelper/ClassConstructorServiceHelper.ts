@@ -10,6 +10,7 @@ import { Product } from "../../Entities/Product";
 import { CartItemDTO } from "../../Entities/DTO/CartItemDTO";
 import { SupplierDTO } from "../../Entities/DTO/SupplierDTO";
 import { Supplier } from "../../Entities/Supplier";
+import { Order } from "../../Entities/Order";
 
 class ClassConstructorServiceHelper{
 
@@ -60,6 +61,20 @@ class ClassConstructorServiceHelper{
         };
         
         return clientData;
+    }
+
+    orderContstructor(cartItems: CartItem[], clientId: string): Order{
+        
+        const createdOrder: Order = {
+            id: uuidv4(),
+            totalOrder: cartItems.reduce((total: number, item: CartItem) =>  total + item.totalAmount, 0),
+            totalItems: cartItems.reduce((total: number, item: CartItem) => total + item.productQtd, 0),
+            clientId: clientId,
+            createdAt: new Date,
+            updatedAt: new Date
+        }
+
+        return createdOrder;
     }
 
     async clientDTOConstructor(client: Client, adress: ClientAdress, cart: Cart, user: User): Promise<ClientDTO>{

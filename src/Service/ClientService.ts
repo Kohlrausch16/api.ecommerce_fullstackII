@@ -32,6 +32,11 @@ class ClientService{
         return await this.classConstructor.clientDTOConstructor(foundClient, foundClientAdress, foundCart, foundUser);
     }
 
+    async getClientIdByCartId(cartId: string): Promise<string>{
+        const userIdData: any = await this.clientRepository.getClientIdByCartId(cartId);
+        return userIdData.id as string;
+    }
+
     async addClient(clientDTO: ClientDTO): Promise<ClientDTO>{
         const createdUser: User = await this.userService.addUser(clientDTO);
         const createdCart: Cart = await this.cartService.addCart(clientDTO);

@@ -38,6 +38,10 @@ class CartItemService{
         });
     }
 
+    async reduceProductQtd(cartItem: CartItem): Promise<void>{
+        await this.productService.alterProductStock(cartItem.productId, cartItem.productQtd);
+    }
+
     async updateCartItemProductQtd(id: string, newQtd: string):Promise<CartItem>{
         const foundCartItem: CartItem = await this.cartItemRepository.getCartItemById(id);
         const foundProduct: Product = await this.productService.getProductById(foundCartItem.productId);

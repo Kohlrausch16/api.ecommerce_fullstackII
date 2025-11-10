@@ -9,7 +9,7 @@ class OrderRepository{
     }
 
     async addOrder(order: Order): Promise<Order>{
-        await this.db('INSERT INTO product_order (id, totalOrder, totalItems, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?)', [order.id, order.totalOrder, order.totalItems, order.createdAt, order.updatedAt]);
+        await this.db.exec('INSERT INTO product_order (id, totalOrder, totalItems, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?)', [order.id, order.totalOrder, order.totalItems, order.createdAt, order.updatedAt]);
         return order;
     }
 

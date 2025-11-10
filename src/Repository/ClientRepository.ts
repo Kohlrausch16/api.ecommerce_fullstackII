@@ -17,6 +17,11 @@ class ClientRepository{
         return foundData[0];
     }
 
+    async getClientIdByCartId(cartId: string): Promise<string>{
+        const foundCartId: string[] = await this.db.exec('SELECT id FROM client WHERE cartId = ?', [cartId]);
+        return foundCartId[0];
+    }
+
     async getClientByCPF(cpf: string): Promise<void>{
         const foundData: Client[] = await this.db.exec('SELECT * FROM client WHERE cpf = ?', [cpf]);
 

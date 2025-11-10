@@ -61,8 +61,10 @@ db.serialize(() => {
             id VARCHAR(255) PRIMARY KEY,
             totalOrder REAL NOT NULL,
             totalItems REAL NOT NULL,
+            clientId VARCHAR(255),
             createdAt TEXT NOT NULL,
-            updatedAt TEXT NOT NULL
+            updatedAt TEXT NOT NULL,
+            FOREIGN KEY (clientId) REFERENCES client(id)
         )
     `);
 
@@ -196,7 +198,7 @@ db.serialize(() => {
     // CART ITEMS
     const cartItems = [
         ['ci001', 2, 4999.80, 1, 'p001', 'c1', 'o1'],
-        ['ci002', 1, 450.00, 1, 'p002', 'c2', 'o2'],
+        ['ci002', 1, 450.00, 1, 'p002', 'c1', 'o2'],
         ['ci003', 4, 3562.00, 1, 'p003', 'c3', 'o3'],
         ['ci004', 1, 1500.00, 1, 'p004', 'c4', 'o4'],
         ['ci005', 1, 5300.00, 1, 'p005', 'c5', 'o5'],

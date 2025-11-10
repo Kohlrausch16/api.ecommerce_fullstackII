@@ -47,9 +47,6 @@ class SupplierService{
     async updateSupplier(id: string, supplier: Supplier): Promise<Supplier>{
         const foundSupplier: Supplier = await this.supplierRepository.getSupplierById(id);
         const updatedSupplier = this.classConstructor.updateSupplierConstructor(supplier, foundSupplier);
-
-        console.log(updatedSupplier);
-
         return await this.supplierRepository.updateSupplier(id, updatedSupplier);
     }
 
