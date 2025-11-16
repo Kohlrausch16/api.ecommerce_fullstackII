@@ -20,8 +20,8 @@ class ClassConstructorServiceHelper{
     async userConstructor(userData: User): Promise<User>{
         userData.id = uuidv4();
         userData.permissionList = this.clientUserPermissions;
-        userData.createdAt = new Date;
-        userData.updatedAt = new Date;
+        userData.createdAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        userData.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
         userData.password = await this.authHelper.hashPassword(userData.password);
 
         return userData;
@@ -29,16 +29,16 @@ class ClassConstructorServiceHelper{
 
     async clientAdressConstructor(adressData: ClientAdress): Promise<ClientAdress>{
         adressData.id = uuidv4();
-        adressData.createdAt = new Date;
-        adressData.updatedAt = new Date;
+        adressData.createdAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        adressData.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return adressData;
     }
 
     async cartConstructor(cartData: Cart): Promise<Cart>{
         cartData.id = uuidv4();
-        cartData.createdAt = new Date;
-        cartData.updatedAt = new Date;
+        cartData.createdAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        cartData.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return cartData;
     }
@@ -56,8 +56,8 @@ class ClassConstructorServiceHelper{
             adressId: adressData.id, 
             cartId: cartData.id,
             userId: userData.id,
-            createdAt: new Date,
-            updatedAt: new Date
+            createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+            updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 19)
         };
         
         return clientData;
@@ -70,8 +70,8 @@ class ClassConstructorServiceHelper{
             totalOrder: cartItems.reduce((total: number, item: CartItem) =>  total + item.totalAmount, 0),
             totalItems: cartItems.reduce((total: number, item: CartItem) => total + item.productQtd, 0),
             clientId: clientId,
-            createdAt: new Date,
-            updatedAt: new Date
+            createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+            updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 19)
         }
 
         return createdOrder;
@@ -90,8 +90,8 @@ class ClassConstructorServiceHelper{
             user: user,
             adress: adress,
             cart: cart,
-            createdAt: client.createdAt as Date,
-            updatedAt: client.updatedAt as Date
+            createdAt: client.createdAt as string,
+            updatedAt: client.updatedAt as string
         }
         return clientDTO;
     }
@@ -104,8 +104,8 @@ class ClassConstructorServiceHelper{
             phone: supplier.phone,
             cnpj: supplier.cnpj,
             adress: adress,
-            createdAt: supplier.createdAt as Date,
-            updatedAt: supplier.updatedAt as Date
+            createdAt: supplier.createdAt as string,
+            updatedAt: supplier.updatedAt as string
         }
 
         return supplierDTO;
@@ -114,8 +114,8 @@ class ClassConstructorServiceHelper{
     async cartItemConstructor(cartItem: CartItem, product: Product): Promise<CartItem>{
         cartItem.id = uuidv4();
         cartItem.totalAmount = product.price * cartItem.productQtd;
-        cartItem.createdAt = new Date;
-        cartItem.updatedAt = new Date;
+        cartItem.createdAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        cartItem.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return cartItem;
     }
@@ -142,7 +142,7 @@ class ClassConstructorServiceHelper{
         client.phoneNumber = clientDTO.phoneNumber;
         client.email = clientDTO.email;
         client.activeStatus = clientDTO.activeStatus;
-        client.updatedAt = new Date;
+        client.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return client;
     }
@@ -151,7 +151,7 @@ class ClassConstructorServiceHelper{
         user.userName = clientDTO.firstName + ' ' + clientDTO.lastName;
         user.email = clientDTO.email;
         user.password = await this.authHelper.hashPassword(clientDTO.password);
-        user.updatedAt = new Date;
+        user.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return user;
     }
@@ -162,7 +162,7 @@ class ClassConstructorServiceHelper{
         supplier.phone = updateSupplier.phone;
         supplier.cnpj = updateSupplier.cnpj;
         supplier.adressId = updateSupplier.adressId
-        supplier.updatedAt = new Date;
+        supplier.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return supplier;
     }
@@ -173,7 +173,7 @@ class ClassConstructorServiceHelper{
         adress.block = adressDTO.block;
         adress.city = adressDTO.city;
         adress.state = adressDTO.state;
-        adress.updatedAt = new Date;
+        adress.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return adress;
     }

@@ -16,6 +16,18 @@ class OrderService{
         return await this.orderRepository.getOrders();
     }
 
+    async getOrdersByMonth(initial: string, final: string): Promise<Order[]| string>{
+        const orderList: Order[] = await this.orderRepository.getOrdersByMonth(initial, final);
+
+        if(orderList.length < 1) return 'Não existem pedidos referentes ao período informado';
+        
+        return orderList; 
+    }
+
+    async getMostSoldProduct(): Promise<any>{
+        return await this.orderRepository.getMostSoldProduct();
+    }
+
     async addOrder(cartId: string): Promise<Order>{
         const foundCartItems: CartItem[] = await this.cartitemService.getCartItemsByCartId(cartId);
         const clientId: string = await this.clientService.getClientIdByCartId(cartId);

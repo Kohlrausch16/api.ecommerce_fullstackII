@@ -14,6 +14,6 @@ export type ClientDTO = {
     adress: ClientAdress; 
     cart: Cart
     user: User;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

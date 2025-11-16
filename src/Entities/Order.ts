@@ -3,6 +3,6 @@ export type Order = {
     totalOrder: number;
     totalItems: number;
     clientId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

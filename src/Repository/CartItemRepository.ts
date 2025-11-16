@@ -22,7 +22,8 @@ class CartItemRepository{
     }
 
     async addCartItem(cartItem: CartItem): Promise<CartItem>{
-        await this.db.exec('INSERT INTO cart_item (id, productQtd, totalAmount, activeStatus, productId, cartId orderId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [cartItem.id, cartItem.productQtd, cartItem.totalAmount, cartItem.activetatus, cartItem.productId, cartItem.cartId, cartItem.orderId, cartItem.createdAt, cartItem.updatedAt]);
+        console.log(cartItem);
+        await this.db.exec('INSERT INTO cart_item (id, productQtd, totalAmount, activeStatus, productId, cartId, orderId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [cartItem.id, cartItem.productQtd, cartItem.totalAmount, cartItem.activetatus, cartItem.productId, cartItem.cartId, cartItem.orderId, cartItem.createdAt, cartItem.updatedAt]);
 
         return await this.getCartItemById(cartItem.id);
     }

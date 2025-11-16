@@ -38,8 +38,8 @@ class SupplierService{
         await this.clientAdressRepository.getAdressById(supplier.adressId);
 
         supplier.id = uuidv4();
-        supplier.createdAt = new Date;
-        supplier.updatedAt = new Date;
+        supplier.createdAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        supplier.updatedAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
         return await this.supplierRepository.addSupplier(supplier);
     }

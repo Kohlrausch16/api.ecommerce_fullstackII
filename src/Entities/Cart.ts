@@ -5,6 +5,6 @@ export type Cart = {
     totalOrder: number;
     activeStatus: boolean;
     cartItems: CartItem[] | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
+    createdAt: string | null;
+    updatedAt: string | null;
 }

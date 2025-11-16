@@ -6,6 +6,6 @@ export type CartItem = {
     productId: string;
     cartId: string;
     orderId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

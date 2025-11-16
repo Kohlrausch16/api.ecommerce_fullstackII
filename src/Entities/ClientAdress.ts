@@ -6,6 +6,6 @@ export type ClientAdress = {
     block: string;
     city: string;
     state: string;
-    createdAt: Date | null;
-    updatedAt: Date | null;
+    createdAt: string | null;
+    updatedAt: string | null;
 }

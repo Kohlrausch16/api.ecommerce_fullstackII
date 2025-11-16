@@ -5,6 +5,6 @@ export type Supplier = {
     phone: string;
     cnpj: string;
     adressId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

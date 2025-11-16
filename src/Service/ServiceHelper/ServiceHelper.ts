@@ -17,7 +17,7 @@ class ServiceHelper{
     
     async parseClientIntoUser(client: Client, password: string): Promise<User>{
         const clientPermisisons = 'get-product,get-product-by-id';
-        var user: User = {id: '', userName: '', email: '', password: '', permissionList: '', createdAt: new Date, updatedAt: new Date};
+        var user: User = {id: '', userName: '', email: '', password: '', permissionList: '', createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19), updatedAt: new Date().toISOString().replace('T', ' ').substring(0, 19)};
 
         user.id = client.id;
         user.userName = client.firstName + ' ' + client.lastName;

@@ -7,6 +7,6 @@ export type SupplierDTO = {
     phone: string;
     cnpj: string;
     adress: ClientAdress;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

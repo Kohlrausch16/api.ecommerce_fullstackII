@@ -10,6 +10,6 @@ export type Client = {
     adressId: string; 
     cartId: string;
     userId: string;
-    createdAt: Date | null;
-    updatedAt: Date | null;
+    createdAt: string | null;
+    updatedAt: string | null;
 }

@@ -8,7 +8,6 @@ export type CartItemDTO = {
     activetatus: boolean;
     productId: Product;
     cartId: string;
-    //orderId: Order;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }
