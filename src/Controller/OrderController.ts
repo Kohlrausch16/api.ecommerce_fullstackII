@@ -13,7 +13,7 @@ class OrderController{
         }
     }
 
-    // Exemplo query: /mensal?initial=2025-11-01&final=2025-11-30
+    // Exemplo query: http:localhost:3000/pedido/mensal?initial=2025-11-01&final=2025-11-30
     async getOrdersByMonth(req: Request, res: Response){
         try{
             res.json(await orderService.getOrdersByMonth(req.query.initial as string, req.query.final as string)).status(200);

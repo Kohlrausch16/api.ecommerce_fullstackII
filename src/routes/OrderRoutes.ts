@@ -8,8 +8,7 @@ const orderController = new OrderController;
 
 orderRouter.get('/pedido', orderController.getOrders);
 orderRouter.get('/pedido/mensal', authenticationMiddleware, authorizationMiddleware('get-monthly-order-report'), orderController.getOrdersByMonth);
-orderRouter.get('/pedido/venda', authenticationMiddleware, authorizationMiddleware('get-most-sold-product'), orderController.getMostSoldProduct);
+orderRouter.get('/pedido/produto', authenticationMiddleware, authorizationMiddleware('get-most-sold-product'), orderController.getMostSoldProduct);
 orderRouter.post('/pedido', orderController.addOrder);
 
 export default orderRouter;
-
