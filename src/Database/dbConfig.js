@@ -119,7 +119,7 @@ db.serialize(() => {
             FOREIGN KEY (userId) REFERENCES user(id)
         )
     `);
-
+/*
   db.run(`INSERT INTO user (id, userName, email, password, permissionList, createdAt, updatedAt)
             VALUES (?, ?, ?, ?, ?, ?, ?)`,
         ['01ac1ba7-312c-4c43-af5a-4f57876898fa', 'admin', 'admin@gmail.com', 'admin', 
@@ -225,7 +225,7 @@ db.serialize(() => {
         ['cl010', 'Patrícia', 'Melo', '666.555.444-33', '(85)90000-9999', 'patricia@gmail.com', '1234', 1, 'a1117a8f-86a9-4024-9158-0aa54f6ac010', 'c10', '0b98e8f7-42b2-49fa-9e56-47a9dc4c5fa1'],
     ];
     clients.forEach(cl => db.run(`INSERT INTO client (id, firstName, lastName, cpf, phoneNumber, email, password, activeStatus, adressId, cartId, userId, createdAt, updatedAt)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [...cl, new Date().toISOString().replace('T', ' ').substring(0, 19), new Date().toISOString().replace('T', ' ').substring(0, 19)]));
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [...cl, new Date().toISOString().replace('T', ' ').substring(0, 19), new Date().toISOString().replace('T', ' ').substring(0, 19)]));*/
 });
 
 function exec(query, params = []) {
