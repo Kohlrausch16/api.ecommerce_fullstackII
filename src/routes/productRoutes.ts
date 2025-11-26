@@ -14,4 +14,5 @@ productRouter.put('/produto/:id',authenticationMiddleware, authorizationMiddlewa
 productRouter.patch('/produto/:id', authenticationMiddleware, authorizationMiddleware('patch-product'), productController.patchProductStatus)
 productRouter.delete('/produto/:id', authenticationMiddleware, authorizationMiddleware('delete-product'), productController.deleteProduct);
 
+
 export default productRouter;
